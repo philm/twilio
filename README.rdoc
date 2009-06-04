@@ -4,17 +4,20 @@ This wrapper defines each of the interfaces currently supported by Twilio REST A
 
 Sample Usage:
 
-1. First create a connection object:
+First create a connection object:
 
   c = Twilio::Connection.new('my_twilio_sid', 'my_auth_token')
   
-2. Now instantiate other objects by passing in the connection:
+Now instantiate other objects by passing in the connection:
 
   a = Twilio::Account.new(c)
   a.update_name('sparky')
   
   call = Twilio::Call.new(c)
   call.make('1234567890', '9876543210', 'http://mysite.com/connected_call')
+  
+  recording = Twilio::Recording.new(c)
+  recording.list
 
 == Copyright
 
