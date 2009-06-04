@@ -5,22 +5,30 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "twilio"
-    gem.summary = %Q{TODO}
-    gem.email = "phil@webficient.com"
-    gem.homepage = "http://github.com/philm/twilio"
+    gem.summary = %Q{Twilio API Client}
+    gem.email = "github@webficient.com"
+    gem.homepage = "http://github.com/webficient/twilio"
     gem.authors = ["Phil Misiowiec"]
-
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.add_dependency 'httparty'
   end
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
+end
+
+require 'rake/rdoctask'
+Rake::RDocTask.new do |rdoc|
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title = 'twilio'
+  rdoc.options << '--line-numbers' << '--inline-source'
+  rdoc.rdoc_files.include('README*')
+  rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
   test.pattern = 'test/**/*_test.rb'
-  test.verbose = true
+  test.verbose = false
 end
 
 begin
@@ -38,19 +46,3 @@ end
 
 
 task :default => :test
-
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
-  if File.exist?('VERSION.yml')
-    config = YAML.load(File.read('VERSION.yml'))
-    version = "#{config[:major]}.#{config[:minor]}.#{config[:patch]}"
-  else
-    version = ""
-  end
-
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "twilio #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
-

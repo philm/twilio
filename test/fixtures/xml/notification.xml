@@ -1,0 +1,19 @@
+<TwilioResponse> 
+	<Notification> 
+		<Sid>NO1fb7086ceb85caed2265f17d7bf7981c</Sid> 
+		<DateCreated>Sat, 07 Feb 2009 13:15:19 -0800</DateCreated>
+		<DateUpdated>Sat, 07 Feb 2009 13:15:19 -0800</DateUpdated>
+		<AccountSid>mysid</AccountSid> 
+		<CallSid>CA42ed11f93dc08b952027ffbc406d0868</CallSid> 
+		<Log>0</Log>
+		<ErrorCode>12345</ErrorCode>
+		<MoreInfo>http://www.twilio.com/docs/errors/12345</MoreInfo>
+		<MessageText>Unable to parse XML response</MessageText>
+		<MessageDate>Thu, 03 Apr 2008 04:36:32 -0400</MessageDate>
+		<RequestURL>http://yourserver.com/handleCall.php</RequestURL>
+		<RequestMethod>POST</RequestMethod>
+		<RequestVariables>Caller=4158675309&Called=4155551212...</RequestVariables>
+		<ResponseHeaders>Content-Length: 500</ResponseHeaders>
+		<ResponseBody>&lt;h1&gt;Error parsing PHP script&lt;/h1&gt;</ResponseBody>
+	</Notification> 
+</TwilioResponse>

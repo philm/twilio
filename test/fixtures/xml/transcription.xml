@@ -1,0 +1,13 @@
+<TwilioResponse>  
+	<Transcription>
+		<Sid>TRbdece5b75f2cd8f6ef38e0a10f5c4447</Sid>
+		<DateCreated>1235986685</DateCreated>
+		<DateUpdated>1235957924</DateUpdated>
+		<AccountSid>mysid</AccountSid>
+		<Status>completed</Status>
+		<RecordingSid>RE3870404da563592ef6a72136438a879c</RecordingSid>
+		<Duration>9</Duration>
+		<TranscriptionText>This is the body a transcribed recording</TranscriptionText>
+		<Price>-0.03000</Price>
+	</Transcription>
+</TwilioResponse>

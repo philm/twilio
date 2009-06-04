@@ -1,7 +1,21 @@
 = twilio
 
-Description goes here.
+This wrapper defines each of the interfaces currently supported by Twilio REST API.
+
+Sample Usage:
+
+1. First create a connection object:
+
+  c = Twilio::Connection.new('my_twilio_sid', 'my_auth_token')
+  
+2. Now instantiate other objects by passing in the connection:
+
+  a = Twilio::Account.new(c)
+  a.update_name('sparky')
+  
+  call = Twilio::Call.new(c)
+  call.make('1234567890', '9876543210', 'http://mysite.com/connected_call')
 
 == Copyright
 
-Copyright (c) 2009 Phil Misiowiec. See LICENSE for details.
+Copyright (c) 2009 Phil Misiowiec, Webficient LLC. See LICENSE for details.

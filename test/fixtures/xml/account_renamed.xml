@@ -1,0 +1,11 @@
+<TwilioResponse>
+	<Account>  
+		<Sid>mysid</Sid>  
+		<FriendlyName>Bubba</FriendlyName>
+		<Status>2</Status>
+		<StatusText>Active</StatusText>  
+		<DateCreated>Wed, 02 Apr 2008 17:33:38 -0700</DateCreated>
+		<DateUpdated>Wed, 02 Apr 2008 17:34:18 -0700</DateUpdated>  
+		<AuthToken>mytoken</AuthToken>  
+	</Account>
+</TwilioResponse>

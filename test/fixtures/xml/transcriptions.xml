@@ -1,0 +1,26 @@
+<TwilioResponse>
+	<Transcriptions page="0" numpages="1" pagesize="50" total="2" start="0" end="1">
+		<Transcription>
+			<Sid>TR685e9a2bdf89b978491b1afada63f078</Sid>
+			<DateCreated>1235986685</DateCreated>
+			<DateUpdated>1235957975</DateUpdated>
+			<AccountSid>mysid</AccountSid>
+			<Status>completed</Status>
+			<RecordingSid>RE3870404da563592ef6a72136438a879c</RecordingSid>
+			<Duration>9</Duration>
+			<TranscriptionText>This is the body of one transcribed recording</TranscriptionText>
+			<Price>-0.25000</Price>
+		</Transcription>
+		<Transcription>
+			<Sid>TRbdece5b75f2cd8f6ef38e0a10f5c4447</Sid>
+			<DateCreated>1235986685</DateCreated>
+			<DateUpdated>1235957924</DateUpdated>
+			<AccountSid>mysid</AccountSid>
+			<Status>completed</Status>
+			<RecordingSid>RE3870404da563592ef6a72136438a879c</RecordingSid>
+			<Duration>9</Duration>
+			<TranscriptionText>This is the body of another transcribed recording</TranscriptionText>
+			<Price>-0.03000</Price>
+		</Transcription>
+	</Transcriptions>
+</TwilioResponse>

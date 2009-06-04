@@ -1,0 +1,10 @@
+<TwilioResponse> 
+	<Recording> 
+	<Sid>RE41331862605f3d662488fdafda2e175f</Sid> 
+	<AccountSid>mysid</AccountSid> 
+	<CallSid>CAcd420fcb3c4b86e360ea0cc27ebc8698</CallSid> 
+	<Duration>15</Duration> 
+	<DateCreated>Tue, 01 Apr 2008 01:07:15 -0400</DateCreated> 
+	<DateUpdated>Tue, 01 Apr 2008 01:07:15 -0400</DateUpdated> 
+	</Recording> 
+</TwilioResponse>
