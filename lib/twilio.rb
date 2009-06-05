@@ -26,6 +26,8 @@ $:.unshift(File.dirname(__FILE__))
 require 'rubygems'
 gem 'httparty', '>= 0.4.3'
 require 'httparty'
+gem 'builder', '>= 2.1.2'
+require 'builder'
 
 require 'twilio/twilio_object'
 require 'twilio/account'
@@ -37,3 +39,4 @@ require 'twilio/notification'
 require 'twilio/outgoing_caller_id'
 require 'twilio/recording'
 require 'twilio/toll_free_phone_number'
+require 'twilio/verb'

@@ -1,0 +1,8 @@
+say_hi:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="1" language="en" voice="woman">hi</Say></Response>
+  
+say_hi_three_times:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="3" language="en" voice="woman">hi</Say></Response>
+  
+say_hi_three_times_with_pause:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="1" language="en" voice="woman">hi</Say><Pause/><Say loop="1" language="en" voice="woman">hi</Say><Pause/><Say loop="1" language="en" voice="woman">hi</Say></Response>

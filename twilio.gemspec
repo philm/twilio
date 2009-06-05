@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "lib/twilio/recording.rb",
     "lib/twilio/toll_free_phone_number.rb",
     "lib/twilio/twilio_object.rb",
+    "lib/twilio/verb.rb",
     "test/fixtures/xml/account.xml",
     "test/fixtures/xml/account_renamed.xml",
     "test/fixtures/xml/call.xml",
@@ -44,6 +45,7 @@ Gem::Specification.new do |s|
     "test/fixtures/xml/recordings.xml",
     "test/fixtures/xml/transcription.xml",
     "test/fixtures/xml/transcriptions.xml",
+    "test/fixtures/yml/verb_responses.yml",
     "test/test_helper.rb",
     "test/twilio/account_test.rb",
     "test/twilio/call_test.rb",
@@ -53,7 +55,8 @@ Gem::Specification.new do |s|
     "test/twilio/notification_test.rb",
     "test/twilio/outgoing_caller_id_test.rb",
     "test/twilio/recording_test.rb",
-    "test/twilio/toll_free_phone_number_test.rb"
+    "test/twilio/toll_free_phone_number_test.rb",
+    "test/twilio/verb_test.rb"
   ]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/webficient/twilio}
@@ -71,7 +74,8 @@ Gem::Specification.new do |s|
     "test/twilio/notification_test.rb",
     "test/twilio/outgoing_caller_id_test.rb",
     "test/twilio/recording_test.rb",
-    "test/twilio/toll_free_phone_number_test.rb"
+    "test/twilio/toll_free_phone_number_test.rb",
+    "test/twilio/verb_test.rb"
   ]
 
   if s.respond_to? :specification_version then
@@ -79,11 +83,14 @@ Gem::Specification.new do |s|
     s.specification_version = 2
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<builder>, [">= 0"])
       s.add_runtime_dependency(%q<httparty>, [">= 0"])
     else
+      s.add_dependency(%q<builder>, [">= 0"])
       s.add_dependency(%q<httparty>, [">= 0"])
     end
   else
+    s.add_dependency(%q<builder>, [">= 0"])
     s.add_dependency(%q<httparty>, [">= 0"])
   end
 end

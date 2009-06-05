@@ -9,6 +9,7 @@ begin
     gem.email = "github@webficient.com"
     gem.homepage = "http://github.com/webficient/twilio"
     gem.authors = ["Phil Misiowiec"]
+    gem.add_dependency 'builder'
     gem.add_dependency 'httparty'
   end
 rescue LoadError
