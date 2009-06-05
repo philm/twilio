@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class VerbTest < Test::Unit::TestCase
+class VerbTest < Test::Unit::TestCase #:nodoc: all
   context "A Twilio Verb" do
     should "say 'Hi'" do
       assert_equal verb_response(:say_hi), Twilio::Verb.say('hi')

@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class TollFreePhoneNumberTest < Test::Unit::TestCase
+class TollFreePhoneNumberTest < Test::Unit::TestCase #:nodoc: all
   context "A toll free phone number" do
     setup do
       @connection = Twilio::Connection.new('mysid', 'mytoken')

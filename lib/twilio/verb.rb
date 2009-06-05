@@ -1,6 +1,32 @@
 module Twilio
+  # Twilio Verbs enable your application to respond to Twilio requests (to your app) with XML responses.
+  #
+  # In addition to the 5 verbs supported by Twilio (say, play, gather, record, dial),
+  # this class also implements dynamic interfaces that allow you to combine useful
+  # operations into a single call. See below methods for examples.
   class Verb
     class << self
+      # The Say verb converts text to speech that is read back to the caller. 
+      # Say is useful for dynamic text that is difficult to prerecord. 
+      #
+      # Examples:
+      #   Twilio::Verb.say('The time is 9:35 PM.')
+      #   Twilio::Verb.say_3_times('The time is 9:35 PM.')
+      #
+      # With numbers, 12345 will be spoken as "twelve thousand three hundred forty five" while
+      # 1 2 3 4 5 will be spoken as "one two three four five."
+      #
+      #   Twilio::Verb.say_4_times('Your PIN is 1234')
+      #   Twilio::Verb.say_4_times('Your PIN is 1 2 3 4')
+      # 
+      # If you need a longer pause between each loop, use the pause form:
+      #
+      #   Twilio::Verb.say_4_times_with_pause('Your PIN is 1 2 3 4')
+      #
+      # Optional params passed in as a hash (see http://www.twilio.com/docs/api_reference/TwiML/say):
+      #    voice: (woman) man
+      #    language: (en) es fr de
+      #    loop: >= 0 (1)
       def say(text, options = {})
         voice = options[:voice] || 'woman'
         language = options[:language] || 'en'
@@ -21,23 +47,27 @@ module Twilio
         }
       end
       
+      #Not yet implemented 
       def play(audio_url, options = {})
         raise NotImplementedError.new 'Not yet implemented - coming soon'
       end
       
+      #Not yet implemented 
       def gather(options = {})
         raise NotImplementedError.new 'Not yet implemented - coming soon'
       end
       
+      #Not yet implemented 
       def record(options = {})
         raise NotImplementedError.new 'Not yet implemented - coming soon'
       end
       
+      #Not yet implemented 
       def dial(phone_number, options = {})
         raise NotImplementedError.new 'Not yet implemented - coming soon'
       end
       
-      def method_missing(method_id, *args)
+      def method_missing(method_id, *args) #:nodoc:
         if match = /(say|play|gather|record|dial)_(\d+)_times(_with_pause$*)/.match(method_id.to_s)
           verb = match.captures.first 
           how_many_times = match.captures[1]

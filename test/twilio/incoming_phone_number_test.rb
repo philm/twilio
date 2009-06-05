@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class IncomingPhoneNumberTest < Test::Unit::TestCase
+class IncomingPhoneNumberTest < Test::Unit::TestCase #:nodoc: all
   context "An incoming phone number" do
     setup do
       @connection = Twilio::Connection.new('mysid', 'mytoken')

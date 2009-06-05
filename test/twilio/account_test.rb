@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class AccountTest < Test::Unit::TestCase
+class AccountTest < Test::Unit::TestCase #:nodoc: all
   context "An account" do
     setup do
       @connection = Twilio::Connection.new('mysid', 'mytoken')
