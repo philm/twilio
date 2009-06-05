@@ -1,8 +1,20 @@
 say_hi:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="1" language="en" voice="woman">hi</Say></Response>
-  
+
+say_hi_in_spanish_with_male_voice:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="1" language="es" voice="man">hola</Say></Response>
+      
 say_hi_three_times:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="3" language="en" voice="woman">hi</Say></Response>
   
 say_hi_three_times_with_pause:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="1" language="en" voice="woman">hi</Say><Pause/><Say loop="1" language="en" voice="woman">hi</Say><Pause/><Say loop="1" language="en" voice="woman">hi</Say></Response>
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say language="en" voice="woman">hi</Say><Pause/><Say language="en" voice="woman">hi</Say><Pause/><Say language="en" voice="woman">hi</Say></Response>
+  
+play_mp3:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Play loop="1">http://foo.com/cowbell.mp3</Play></Response>
+  
+play_mp3_two_times:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Play loop="2">http://foo.com/cowbell.mp3</Play></Response>
+
+play_mp3_two_times_with_pause:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Play>http://foo.com/cowbell.mp3</Play><Pause/><Play>http://foo.com/cowbell.mp3</Play></Response>   

@@ -29,17 +29,17 @@ module Twilio
       #    loop: >= 0 (1)
       def say(text, options = {})
         voice = options[:voice] || 'woman'
-        language = options[:language] || 'en'
+        language = options[:language] || 'en'        
         loop_count = Integer(options[:loop]  || 1)
         pause = options[:pause]
         
         xml = Builder::XmlMarkup.new
         xml.instruct!
         xml.Response {
-          if pause
+          if pause                                    
             loop_count.times do |i|
-              xml.Say(text, :voice => voice, :language => language, :loop => 1)
-              xml.Pause unless i+1 == loop_count
+              xml.Say(text, :voice => voice, :language => language)
+              xml.Pause unless i == loop_count-1
             end
           else
             xml.Say(text, :voice => voice, :language => language, :loop => loop_count)
@@ -47,9 +47,33 @@ module Twilio
         }
       end
       
-      #Not yet implemented 
+      #  The Play verb plays an audio URL back to the caller. 
+      # Examples:
+      #   Twilio::Verb.play('http://foo.com/cowbell.mp3')
+      #   Twilio::Verb.play_3_times('http://foo.com/cowbell.mp3')
+      #
+      # If you need a longer pause between each loop, use the pause form:
+      #
+      #   Twilio::Verb.play_3_times_with_pause('http://foo.com/cowbell.mp3')
+      #
+      # Optional params passed in as a hash (see http://www.twilio.com/docs/api_reference/TwiML/play):
+      #    loop: >= 0 (1)      
       def play(audio_url, options = {})
-        raise NotImplementedError.new 'Not yet implemented - coming soon'
+        loop_count = Integer(options[:loop]  || 1)
+        pause = options[:pause]
+        
+        xml = Builder::XmlMarkup.new
+        xml.instruct!
+        xml.Response {
+          if pause                                    
+            loop_count.times do |i|
+              xml.Play(audio_url)
+              xml.Pause unless i == loop_count-1
+            end
+          else
+            xml.Play(audio_url, :loop => loop_count)
+          end          
+        }
       end
       
       #Not yet implemented 
