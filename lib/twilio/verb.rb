@@ -48,6 +48,3 @@ module Twilio
     end
   end
 end
-
-#Twilio::Verb.say_3_times("Your pin code is #{@random_code}")
-#Twilio::Verb.say_3_times_with_pause("Your pin code is #{@random_code}")
