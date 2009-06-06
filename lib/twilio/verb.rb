@@ -36,10 +36,9 @@ module Twilio
         xml = Builder::XmlMarkup.new
         xml.instruct!
         xml.Response {
-          if pause                                    
-            loop_count.times do |i|
+          if pause
+            loop_with_pause(loop_count, xml) do
               xml.Say(text, :voice => voice, :language => language)
-              xml.Pause unless i == loop_count-1
             end
           else
             xml.Say(text, :voice => voice, :language => language, :loop => loop_count)
@@ -65,15 +64,22 @@ module Twilio
         xml = Builder::XmlMarkup.new
         xml.instruct!
         xml.Response {
-          if pause                                    
-            loop_count.times do |i|
+          if pause
+            loop_with_pause(loop_count, xml) do
               xml.Play(audio_url)
-              xml.Pause unless i == loop_count-1
             end
           else
             xml.Play(audio_url, :loop => loop_count)
           end          
         }
+      end
+      
+      def loop_with_pause(loop_count, xml, &verb_action)
+        last_iteration = loop_count-1                               
+        loop_count.times do |i|
+          yield verb_action
+          xml.Pause unless i == last_iteration
+        end
       end
       
       #Not yet implemented 
