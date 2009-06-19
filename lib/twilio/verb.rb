@@ -103,6 +103,8 @@ module Twilio
           how_many_times = match.captures[1]
           pause = match.captures[2] == '_with_pause'
           self.send(verb, args.first, { :loop => how_many_times, :pause =>  pause})
+        else
+          raise NoMethodError.new("Method --- #{method_id} --- not found")
         end
       end
     end
