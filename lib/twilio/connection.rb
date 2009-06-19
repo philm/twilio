@@ -1,7 +1,7 @@
 module Twilio
-  #The Connection class caches the Twilio API base path and authentication credentials.
-  #It is passed into the constructor of other TwilioObject's, avoiding the need to 
-  #explicitly set credentials with each API call.
+  # The Connection class caches the Twilio API base path and authentication credentials.
+  # It is passed into the constructor of other TwilioObject's, avoiding the need to 
+  # explicitly set credentials with each API call.
   #
   #  Example:
   #  c = Twilio::Connection.new('my_twilio_sid', 'my_auth_token')

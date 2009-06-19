@@ -1,4 +1,5 @@
 module Twilio
+  # The Account resource represents your Twilio Account. 
   class Account < TwilioObject
     def get
       self.connection.class.get('')

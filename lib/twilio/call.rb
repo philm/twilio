@@ -1,5 +1,12 @@
 module Twilio
+    # A Call represenents a connection between a telephone and Twilio. This may be 
+    # inbound, when a person calls your application, or outbound when your application 
+    # initiates the call, either via the REST API, or during a call via the Dial Verb. 
   class Call < TwilioObject
+    #  Example:
+    #  c = Twilio::Connection.new('my_twilio_sid', 'my_auth_token')
+    #  call = Twilio::Call.new(c)
+    #  response = call.make(CALLER_ID, user_number, 'http://myapp.com/twilio_response_handler')
     def make(caller, called, url, optional = {})
       self.connection.class.post("/Calls", :body => {:Caller => caller, :Called => called, :Url => url}.merge(optional))
     end

@@ -1,5 +1,5 @@
 module Twilio
-  class TwilioObject
+  class TwilioObject  #:nodoc: all
     include HTTParty
     
     attr_reader :connection

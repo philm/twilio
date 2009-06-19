@@ -1,4 +1,6 @@
 module Twilio
+  # Recordings are generated when you use the Record Verb. Those recordings are 
+  # hosted on Twilio's REST API for you to access. 
   class Recording < TwilioObject    
     def list(optional = {})
       self.connection.class.get("/Recordings", :query => optional)  

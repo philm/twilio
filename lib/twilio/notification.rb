@@ -1,4 +1,6 @@
 module Twilio
+  # A Notification represenents a log entry made by Twilio in the course of handling 
+  # your calls or using the REST API.
   class Notification < TwilioObject
     def list(optional = {})
       self.connection.class.get('/Notifications', :query => optional)

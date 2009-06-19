@@ -1,4 +1,6 @@
 module Twilio
+  # An OutgoingCallerId resource represents an outgoing Caller ID that you have 
+  # registered with Twilio for use when making an outgoing call or using the Dial Verb. 
   class OutgoingCallerId < TwilioObject
     def create(phone_number, friendly_name = phone_number, call_delay = 0)
       self.connection.class.post("/OutgoingCallerIds", :body => {
