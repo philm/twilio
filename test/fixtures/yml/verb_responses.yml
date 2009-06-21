@@ -39,3 +39,6 @@ gather_with_finish_key:
   
 gather_with_num_digits:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather numDigits="5"/></Response>
+  
+gather_with_all_options_set:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather numDigits="5" method="GET" timeout="10" finishOnKey="*" action="http://foobar.com"/></Response>  

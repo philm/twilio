@@ -23,7 +23,7 @@ module Twilio
       #
       #   Twilio::Verb.say_4_times_with_pause('Your PIN is 1 2 3 4')
       #
-      # Optional params (see http://www.twilio.com/docs/api_reference/TwiML/say) are passed in as a hash:
+      # Options (see http://www.twilio.com/docs/api_reference/TwiML/say) are passed in as a hash:
       #
       #   Twilio::Verb.say('The time is 9:35 PM.', :voice => 'woman')
       #   Twilio::Verb.say('The time is 9:35 PM.', {:voice => 'woman', :language => 'es'})
@@ -53,7 +53,7 @@ module Twilio
         }
       end
       
-      #  The Play verb plays an audio URL back to the caller. 
+      # The Play verb plays an audio URL back to the caller. 
       # Examples:
       #   Twilio::Verb.play('http://foo.com/cowbell.mp3')
       #   Twilio::Verb.play_3_times('http://foo.com/cowbell.mp3')
@@ -62,7 +62,7 @@ module Twilio
       #
       #   Twilio::Verb.play_3_times_with_pause('http://foo.com/cowbell.mp3')
       #
-      # Optional params (see http://www.twilio.com/docs/api_reference/TwiML/play) are passed in as a hash,
+      # Options (see http://www.twilio.com/docs/api_reference/TwiML/play) are passed in as a hash,
       # however, since the Play verb only supports 'loop' as the current option, you can instead use the
       # above form to keep things concise. 
       def play(*args, &block)
@@ -90,7 +90,17 @@ module Twilio
           end          
         }
       end
-            
+      
+      # The Gather verb collects digits entered by a caller into their telephone keypad. 
+      # When the caller is done entering data, Twilio submits that data to a provided URL, 
+      # as either a HTTP GET or POST request, just like a web browser submits data from an HTML form. 
+      #
+      # Options (see http://www.twilio.com/docs/api_reference/TwiML/gather) are passed in as a hash
+      #
+      # Examples:
+      #   Twilio::Verb.gather
+      #   Twilio::Verb.gather(:action => 'http://foobar.com')
+      #   Twilio::Verb.gather(:finishOnKey => '*')    
       def gather(*args, &block)
         options = args.shift
         

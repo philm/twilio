@@ -58,6 +58,10 @@ class VerbTest < Test::Unit::TestCase #:nodoc: all
       assert_equal verb_response(:gather_with_num_digits), Twilio::Verb.gather(:numDigits => 5)
     end
     
+    should "gather with all options set" do
+      assert_equal verb_response(:gather_with_all_options_set), Twilio::Verb.gather({:action => 'http://foobar.com', :method => 'GET', :timeout => 10, :finishOnKey => '*', :numDigits => 5})
+    end
+    
     should "raise not implemented error with record" do
       assert_raise(NotImplementedError) { Twilio::Verb.record('something') }
     end
