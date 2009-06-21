@@ -23,25 +23,32 @@ module Twilio
       #
       #   Twilio::Verb.say_4_times_with_pause('Your PIN is 1 2 3 4')
       #
-      # Optional params passed in as a hash (see http://www.twilio.com/docs/api_reference/TwiML/say):
-      #    voice: (woman) man
-      #    language: (en) es fr de
-      #    loop: >= 0 (1)
-      def say(text, options = {})
-        voice = options[:voice] || 'woman'
-        language = options[:language] || 'en'        
-        loop_count = Integer(options[:loop]  || 1)
-        pause = options[:pause]
+      # Optional params (see http://www.twilio.com/docs/api_reference/TwiML/say) are passed in as a hash:
+      #
+      #   Twilio::Verb.say('The time is 9:35 PM.', :voice => 'woman')
+      #   Twilio::Verb.say('The time is 9:35 PM.', {:voice => 'woman', :language => 'es'})
+      def say(*args, &block)
+        options = {:voice => 'man', :language => 'en', :loop => 1}
+        args.each do |arg|
+          case arg
+          when String
+            options[:text_to_speak] = arg
+          when Hash
+            options.merge!(arg)
+          else
+            raise ArgumentError, 'say expects String or Hash argument'
+          end
+        end
         
         xml = Builder::XmlMarkup.new
         xml.instruct!
         xml.Response {
-          if pause
-            loop_with_pause(loop_count, xml) do
-              xml.Say(text, :voice => voice, :language => language)
+          if options[:pause]
+            loop_with_pause(options[:loop], xml) do
+              xml.Say(options[:text_to_speak], :voice => options[:voice], :language => options[:language])
             end
           else
-            xml.Say(text, :voice => voice, :language => language, :loop => loop_count)
+            xml.Say(options[:text_to_speak], :voice => options[:voice], :language => options[:language], :loop => options[:loop])
           end
         }
       end
@@ -55,36 +62,43 @@ module Twilio
       #
       #   Twilio::Verb.play_3_times_with_pause('http://foo.com/cowbell.mp3')
       #
-      # Optional params passed in as a hash (see http://www.twilio.com/docs/api_reference/TwiML/play):
-      #    loop: >= 0 (1)      
-      def play(audio_url, options = {})
-        loop_count = Integer(options[:loop]  || 1)
-        pause = options[:pause]
+      # Optional params (see http://www.twilio.com/docs/api_reference/TwiML/play) are passed in as a hash,
+      # however, since the Play verb only supports 'loop' as the current option, you can instead use the
+      # above form to keep things concise. 
+      def play(*args, &block)
+        options = {:loop => 1}
+        args.each do |arg|
+          case arg
+          when String
+            options[:audio_url] = arg
+          when Hash
+            options.merge!(arg)
+          else
+            raise ArgumentError, 'play expects String or Hash argument'
+          end
+        end
+
+        xml = Builder::XmlMarkup.new
+        xml.instruct!
+        xml.Response {
+          if options[:pause]
+            loop_with_pause(options[:loop], xml) do
+              xml.Play(options[:audio_url])
+            end
+          else
+            xml.Play(options[:audio_url], :loop => options[:loop])
+          end          
+        }
+      end
+            
+      def gather(*args, &block)
+        options = args.shift
         
         xml = Builder::XmlMarkup.new
         xml.instruct!
         xml.Response {
-          if pause
-            loop_with_pause(loop_count, xml) do
-              xml.Play(audio_url)
-            end
-          else
-            xml.Play(audio_url, :loop => loop_count)
-          end          
+          xml.Gather(options)       
         }
-      end
-      
-      def loop_with_pause(loop_count, xml, &verb_action)
-        last_iteration = loop_count-1                               
-        loop_count.times do |i|
-          yield verb_action
-          xml.Pause unless i == last_iteration
-        end
-      end
-      
-      #Not yet implemented 
-      def gather(options = {})
-        raise NotImplementedError.new 'Not yet implemented - coming soon'
       end
       
       #Not yet implemented 
@@ -96,17 +110,27 @@ module Twilio
       def dial(phone_number, options = {})
         raise NotImplementedError.new 'Not yet implemented - coming soon'
       end
-      
+
       def method_missing(method_id, *args) #:nodoc:
         if match = /(say|play|gather|record|dial)_(\d+)_times(_with_pause$*)/.match(method_id.to_s)
           verb = match.captures.first 
           how_many_times = match.captures[1]
           pause = match.captures[2] == '_with_pause'
-          self.send(verb, args.first, { :loop => how_many_times, :pause =>  pause})
+          self.send(verb, args.first, { :loop => Integer(how_many_times), :pause =>  pause})
         else
           raise NoMethodError.new("Method --- #{method_id} --- not found")
         end
       end
+            
+      private 
+      
+        def loop_with_pause(loop_count, xml, &verb_action)
+          last_iteration = loop_count-1                               
+          loop_count.times do |i|
+            yield verb_action
+            xml.Pause unless i == last_iteration
+          end
+        end
     end
   end
 end

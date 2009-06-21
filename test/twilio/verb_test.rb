@@ -5,9 +5,13 @@ class VerbTest < Test::Unit::TestCase #:nodoc: all
     should "say 'hi'" do
       assert_equal verb_response(:say_hi), Twilio::Verb.say('hi')
     end
-    
-    should "say 'hola' in Spanish with male voice" do
-      assert_equal verb_response(:say_hi_in_spanish_with_male_voice), Twilio::Verb.say('hola', {:voice => 'man', :language => 'es'})
+
+    should "say 'hi' with female voice" do
+      assert_equal verb_response(:say_hi_with_female_voice), Twilio::Verb.say('hi', :voice => 'woman')
+    end
+        
+    should "say 'hola' in Spanish with female voice" do
+      assert_equal verb_response(:say_hi_in_spanish_with_female_voice), Twilio::Verb.say('hola', {:voice => 'woman', :language => 'es'})
     end
     
     should "say 'hi' three times" do
@@ -30,8 +34,28 @@ class VerbTest < Test::Unit::TestCase #:nodoc: all
       assert_equal verb_response(:play_mp3_two_times_with_pause), Twilio::Verb.play_2_times_with_pause('http://foo.com/cowbell.mp3')
     end
      
-    should "raise not implemented error with gather" do
-      assert_raise(NotImplementedError) { Twilio::Verb.gather('something') }
+    should "gather" do
+      assert_equal verb_response(:gather), Twilio::Verb.gather
+    end
+    
+    should "gather with action" do
+      assert_equal verb_response(:gather_with_action), Twilio::Verb.gather(:action => 'http://foobar.com')
+    end
+    
+    should "gather with GET method" do
+      assert_equal verb_response(:gather_with_get_method), Twilio::Verb.gather(:method => 'GET')
+    end
+    
+    should "gather with timeout" do
+      assert_equal verb_response(:gather_with_timeout), Twilio::Verb.gather(:timeout => 10)
+    end
+    
+    should "gather with finish key" do
+      assert_equal verb_response(:gather_with_finish_key), Twilio::Verb.gather(:finishOnKey => '*')
+    end
+    
+    should "gather with num digits" do
+      assert_equal verb_response(:gather_with_num_digits), Twilio::Verb.gather(:numDigits => 5)
     end
     
     should "raise not implemented error with record" do

@@ -1,14 +1,17 @@
 say_hi:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="1" language="en" voice="woman">hi</Say></Response>
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="1" language="en" voice="man">hi</Say></Response>
 
-say_hi_in_spanish_with_male_voice:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="1" language="es" voice="man">hola</Say></Response>
+say_hi_with_female_voice:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="1" language="en" voice="woman">hi</Say></Response>
+    
+say_hi_in_spanish_with_female_voice:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="1" language="es" voice="woman">hola</Say></Response>
       
 say_hi_three_times:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="3" language="en" voice="woman">hi</Say></Response>
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="3" language="en" voice="man">hi</Say></Response>
   
 say_hi_three_times_with_pause:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say language="en" voice="woman">hi</Say><Pause/><Say language="en" voice="woman">hi</Say><Pause/><Say language="en" voice="woman">hi</Say></Response>
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say language="en" voice="man">hi</Say><Pause/><Say language="en" voice="man">hi</Say><Pause/><Say language="en" voice="man">hi</Say></Response>
   
 play_mp3:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Play loop="1">http://foo.com/cowbell.mp3</Play></Response>
@@ -17,4 +20,22 @@ play_mp3_two_times:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Play loop="2">http://foo.com/cowbell.mp3</Play></Response>
 
 play_mp3_two_times_with_pause:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Play>http://foo.com/cowbell.mp3</Play><Pause/><Play>http://foo.com/cowbell.mp3</Play></Response>   
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Play>http://foo.com/cowbell.mp3</Play><Pause/><Play>http://foo.com/cowbell.mp3</Play></Response>
+  
+gather:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather></Gather></Response>
+
+gather_with_action:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather action="http://foobar.com"/></Response>
+      
+gather_with_get_method:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather method="GET"/></Response>
+  
+gather_with_timeout:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather timeout="10"/></Response>
+  
+gather_with_finish_key:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather finishOnKey="*"/></Response>
+  
+gather_with_num_digits:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather numDigits="5"/></Response>
