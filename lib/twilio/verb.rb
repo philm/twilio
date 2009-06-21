@@ -100,24 +100,34 @@ module Twilio
       # Examples:
       #   Twilio::Verb.gather
       #   Twilio::Verb.gather(:action => 'http://foobar.com')
-      #   Twilio::Verb.gather(:finishOnKey => '*')    
+      #   Twilio::Verb.gather(:finishOnKey => '*') 
+      #   Twilio::Verb.gather(:action => 'http://foobar.com', :finishOnKey => '*') 
       def gather(*args, &block)
         options = args.shift
-        
         xml = Builder::XmlMarkup.new
         xml.instruct!
-        xml.Response {
-          xml.Gather(options)       
-        }
+        xml.Response { xml.Gather(options) }
+      end
+      
+      # The Record verb records the caller's voice and returns a URL that links to a file 
+      # containing the audio recording.
+      #
+      # Options (see http://www.twilio.com/docs/api_reference/TwiML/record) are passed in as a hash
+      #
+      # Examples:
+      #   Twilio::Verb.record
+      #   Twilio::Verb.record(:action => 'http://foobar.com')
+      #   Twilio::Verb.record(:finishOnKey => '*') 
+      #   Twilio::Verb.record(:transcribe => true, :transcribeCallback => '/handle_transcribe')
+      def record(*args, &block)
+        options = args.shift
+        xml = Builder::XmlMarkup.new
+        xml.instruct!
+        xml.Response { xml.Record(options) }
       end
       
       #Not yet implemented 
-      def record(options = {})
-        raise NotImplementedError.new 'Not yet implemented - coming soon'
-      end
-      
-      #Not yet implemented 
-      def dial(phone_number, options = {})
+      def dial(*args, &block)
         raise NotImplementedError.new 'Not yet implemented - coming soon'
       end
 

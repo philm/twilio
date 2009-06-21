@@ -59,15 +59,39 @@ class VerbTest < Test::Unit::TestCase #:nodoc: all
     end
     
     should "gather with all options set" do
-      assert_equal verb_response(:gather_with_all_options_set), Twilio::Verb.gather({:action => 'http://foobar.com', :method => 'GET', :timeout => 10, :finishOnKey => '*', :numDigits => 5})
+      assert_equal verb_response(:gather_with_all_options_set), Twilio::Verb.gather(:action => 'http://foobar.com', :method => 'GET', :timeout => 10, :finishOnKey => '*', :numDigits => 5)
     end
     
-    should "raise not implemented error with record" do
-      assert_raise(NotImplementedError) { Twilio::Verb.record('something') }
+    should "record" do
+      assert_equal verb_response(:record), Twilio::Verb.record
+    end
+    
+    should "record with action" do
+      assert_equal verb_response(:record_with_action), Twilio::Verb.record(:action => 'http://foobar.com')
+    end
+    
+    should "record with GET method" do
+      assert_equal verb_response(:record_with_get_method), Twilio::Verb.record(:method => 'GET')
+    end
+    
+    should "record with timeout" do
+      assert_equal verb_response(:record_with_timeout), Twilio::Verb.record(:timeout => 10)
+    end
+    
+    should "record with finish key" do
+      assert_equal verb_response(:record_with_finish_key), Twilio::Verb.record(:finishOnKey => '*')
+    end
+    
+    should "record with max length" do
+      assert_equal verb_response(:record_with_max_length), Twilio::Verb.record(:maxLength => 1800)      
+    end
+    
+    should "record with transcribe" do
+      assert_equal verb_response(:record_with_transcribe), Twilio::Verb.record(:transcribe => true, :transcribeCallback => '/handle_transcribe')            
     end
     
     should "raise not implemented error with dial" do
-      assert_raise(NotImplementedError) { Twilio::Verb.record('dial') }
+      assert_raise(NotImplementedError) { Twilio::Verb.dial }
     end
   end
   

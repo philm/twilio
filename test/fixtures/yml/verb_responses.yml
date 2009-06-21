@@ -41,4 +41,25 @@ gather_with_num_digits:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather numDigits="5"/></Response>
   
 gather_with_all_options_set:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather numDigits="5" method="GET" timeout="10" finishOnKey="*" action="http://foobar.com"/></Response>  
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather action="http://foobar.com" numDigits="5" method="GET" timeout="10" finishOnKey="*"/></Response>
+  
+record:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Record></Record></Response>
+  
+record_with_action:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Record action="http://foobar.com"/></Response>
+  
+record_with_get_method:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Record method="GET"/></Response>
+  
+record_with_timeout:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Record timeout="10"/></Response>
+  
+record_with_finish_key:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Record finishOnKey="*"/></Response>
+
+record_with_max_length:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Record maxLength="1800"/></Response>
+  
+record_with_transcribe:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Record transcribeCallback="/handle_transcribe" transcribe="true"/></Response>  
