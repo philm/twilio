@@ -1,6 +1,8 @@
-= twilio
+= Twilio Gem
 
-This wrapper defines each of the interfaces currently supported by Twilio REST API.
+The Twilio gem provides two major pieces of functionality: (1) a Ruby wrapper for the Twilio REST API and (2) response handlers based on the Twilio Markup XML (TwiML).
+
+See http://www.twilio.com/docs/index for Twilio's API documentation.
 
 Sample Usage:
 
@@ -9,15 +11,21 @@ First create a connection object:
   c = Twilio::Connection.new('my_twilio_sid', 'my_auth_token')
   
 Now instantiate other objects by passing in the connection:
-
-  a = Twilio::Account.new(c)
-  a.update_name('sparky')
   
   call = Twilio::Call.new(c)
   call.make('1234567890', '9876543210', 'http://mysite.com/connected_call')
   
   recording = Twilio::Recording.new(c)
   recording.list
+
+When Twilio's servers ping your callback url, you can respond with the Twilio Verb object. For example,
+in a Ruby on Rails application, you could do the following inside a controller class:
+
+  verb = Twilio::Verb.new { |v|
+    v.say("The time is #{Time.now}")
+    v.hangup
+  }
+  verb.response
 
 == Copyright
 
