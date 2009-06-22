@@ -22,13 +22,23 @@ class VerbTest < Test::Unit::TestCase #:nodoc: all
       assert_equal verb_response(:say_hi_three_times_with_pause), Twilio::Verb.new.say('hi', :loop => 3, :pause => true)
     end
     
-    #should "say 'hi' with pause and say 'bye'" do
-    #  verb = Twilio::Verb.new { |v|
-    #    v.say('TESTING')
-    #    puts v.say('BYE')
-    #  }
-    #  assert_equal verb_response(:say_hi_with_pause_and_say_bye), verb  
-    #end
+    should "say 'hi' with pause and say 'bye'" do
+      verb = Twilio::Verb.new { |v|
+        v.say('hi', :loop => 1)
+        v.pause
+        v.say('bye')
+      }
+      assert_equal verb_response(:say_hi_with_pause_and_say_bye), verb.response
+    end
+    
+    should "say 'hi' with 2 second pause and say 'bye'" do
+      verb = Twilio::Verb.new { |v|
+        v.say('hi')
+        v.pause(:length => 2)
+        v.say('bye')
+      }
+      assert_equal verb_response(:say_hi_with_2_second_pause_and_say_bye), verb.response
+    end
     
     should "play mp3 response" do
       assert_equal verb_response(:play_mp3), Twilio::Verb.new.play('http://foo.com/cowbell.mp3')
@@ -128,6 +138,26 @@ class VerbTest < Test::Unit::TestCase #:nodoc: all
     
     should "dial with timeout and caller id" do
       assert_equal verb_response(:dial_with_timeout_and_caller_id), Twilio::Verb.new.dial('415-123-4567', {:timeout => 10, :callerId => '858-987-6543'})
+    end
+    
+    should "dial with redirect" do
+      verb = Twilio::Verb.new { |v|
+        v.dial('415-123-4567')
+        v.redirect('http://www.foo.com/nextInstructions')
+      }
+      assert_equal verb_response(:dial_with_redirect), verb.response
+    end
+    
+    should "hangup" do
+      assert_equal verb_response(:hangup), Twilio::Verb.new.hangup
+    end
+    
+    should "say hi and hangup" do
+      verb = Twilio::Verb.new { |v|
+        v.say('hi')
+        v.hangup
+      }
+      assert_equal verb_response(:say_hi_and_hangup), verb.response
     end
   end
   

@@ -1,13 +1,19 @@
 module Twilio
   # Twilio Verbs enable your application to respond to Twilio requests (to your app) with XML responses.
   # There are 5 primary verbs (say, play, gather, record, dial) and 3 secondary (hangup, pause, redirect).
+  # Verbs can be chained and some nested.
   class Verb
+    
+    attr_reader :response
         
     def initialize(&block)
       @xml = Builder::XmlMarkup.new
       @xml.instruct!
       
-      block.call(self) if block_given?
+      if block_given?
+        @chain = true
+        @response = @xml.Response { block.call(self) }
+      end
     end
         
     # The Say verb converts text to speech that is read back to the caller. 
@@ -31,7 +37,7 @@ module Twilio
     #
     #   Twilio::Verb.new.say('The time is 9:35 PM.', :voice => 'woman')
     #   Twilio::Verb.new.say('The time is 9:35 PM.', {:voice => 'woman', :language => 'es'})
-    def say(*args, &block)
+    def say(*args)
       options = {:voice => 'man', :language => 'en', :loop => 1}
       args.each do |arg|
         case arg
@@ -44,7 +50,7 @@ module Twilio
         end
       end
       
-      response {
+      output {
         if options[:pause]
           loop_with_pause(options[:loop], @xml) do
             @xml.Say(options[:text_to_speak], :voice => options[:voice], :language => options[:language])
@@ -66,7 +72,7 @@ module Twilio
     #
     # Options (see http://www.twilio.com/docs/api_reference/TwiML/play) are passed in as a hash,
     # but only 'loop' is currently supported.
-    def play(*args, &block)
+    def play(*args)
       options = {:loop => 1}
       args.each do |arg|
         case arg
@@ -79,7 +85,7 @@ module Twilio
         end
       end
 
-      response {
+      output {
         if options[:pause]
           loop_with_pause(options[:loop], @xml) do
             @xml.Play(options[:audio_url])
@@ -103,7 +109,7 @@ module Twilio
     #   Twilio::Verb.new.gather(:action => 'http://foobar.com', :finishOnKey => '*') 
     def gather(*args, &block)
       options = args.shift
-      response { @xml.Gather(options) }
+      output { @xml.Gather(options) }
     end
     
     # The Record verb records the caller's voice and returns a URL that links to a file 
@@ -116,9 +122,9 @@ module Twilio
     #   Twilio::Verb.new.record(:action => 'http://foobar.com')
     #   Twilio::Verb.new.record(:finishOnKey => '*') 
     #   Twilio::Verb.new.record(:transcribe => true, :transcribeCallback => '/handle_transcribe')
-    def record(*args, &block)
+    def record(*args)
       options = args.shift
-      response { @xml.Record(options) }
+      output { @xml.Record(options) }
     end
     
     # The Dial verb connects the current caller to an another phone. If the called party picks up, 
@@ -151,13 +157,76 @@ module Twilio
         end
       end
       
-      response { @xml.Dial(number_to_dial, options) }
+      output { @xml.Dial(number_to_dial, options) }
+    end
+    
+    # The Pause (secondary) verb waits silently for a number of seconds. 
+    # It is normally chained with other verbs. 
+    #
+    # Options (see http://www.twilio.com/docs/api_reference/TwiML/pause) are passed in as a hash
+    #
+    # Examples:
+    #   verb = Twilio::Verb.new { |v|
+    #     v.say('greetings')
+    #     v.pause(:length => 2)
+    #     v.say('have a nice day')
+    #   }
+    #   verb.response
+    def pause(*args)
+      options = args.shift
+      output { @xml.Pause(options) }
+    end
+    
+    # The Redirect (secondary) verb transfers control to a different URL.
+    # It is normally chained with other verbs.
+    #
+    # Options (see http://www.twilio.com/docs/api_reference/TwiML/redirect) are passed in as a hash
+    #
+    # Examples:
+    #   verb = Twilio::Verb.new { |v|
+    #     v.dial('415-123-4567')
+    #     v.redirect('http://www.foo.com/nextInstructions')
+    #   }
+    #   verb.response
+    def redirect(*args)
+      redirect_to_url = ''
+      options = {}
+      args.each do |arg|
+        case arg
+        when String
+          redirect_to_url = arg
+        when Hash
+          options.merge!(arg)
+        else
+          raise ArgumentError, 'dial expects String or Hash argument'
+        end
+      end
+      
+      output { @xml.Redirect(redirect_to_url, options) }
+    end
+    
+    # The Hangup (secondary) verb ends the call. 
+    # 
+    # Examples:
+    #   If your response is only a hangup:
+    #
+    #   Twilio::Verb.new.hangup
+    #
+    #   If your response is chained:
+    #
+    #   verb = Twilio::Verb.new { |v|
+    #     v.say("The time is #{Time.now}")
+    #     v.hangup
+    #   }
+    #   verb.response
+    def hangup
+      output { @xml.Hangup }
     end
           
     private
     
-      def response
-        @xml.Response { yield }
+      def output
+        @chain ? yield : @xml.Response { yield }
       end 
     
       def loop_with_pause(loop_count, xml, &verb_action)
