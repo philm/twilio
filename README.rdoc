@@ -1,4 +1,4 @@
-h1. Twilio Gem
+= Twilio Gem
 
 The Twilio gem provides two major pieces of functionality: (1) a Ruby wrapper for the Twilio REST API and (2) response handlers based on the Twilio Markup XML (TwiML).
 
@@ -6,7 +6,7 @@ See http://www.twilio.com/docs/index for Twilio's API documentation.
 
 For an overview of the Twilio Gem and a sample use case, check out http://www.webficient.com/2009/06/22/hello-this-is-your-rails-app-calling-you.
 
-h2. Calling the Twilio REST API
+== Calling the Twilio REST API
 
 First create a connection object:
 
@@ -20,7 +20,7 @@ Now instantiate other objects by passing in the connection:
   recording = Twilio::Recording.new(c)
   recording.list
   
-h2. Responding to Twilio
+== Responding to Twilio
 
 When Twilio calls your application URL, your response must use the Twilio Markup XML (http://www.twilio.com/docs/api_reference/TwiML/). The Twilio gem makes this very easy 
 by providing a Twilio Verb class. 
