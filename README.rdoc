@@ -20,8 +20,10 @@ Now instantiate other objects by passing in the connection:
   recording = Twilio::Recording.new(c)
   recording.list
 
-When Twilio's servers ping your callback url, you can respond with the Twilio Verb object. For example,
-in a Ruby on Rails application, you could do the following inside a controller class:
+When Twilio calls your application URL, your response must use the Twilio Markup XML (http://www.twilio.com/docs/api_reference/TwiML/). The Twilio gem makes this very easy 
+by providing a Twilio Verb class. 
+
+For example, in a Ruby on Rails application, you could do the following inside a controller class:
 
   Twilio::Verb.new.dial('415-123-4567')
   
