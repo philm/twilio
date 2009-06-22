@@ -1,7 +1,19 @@
 module Twilio
   # Twilio Verbs enable your application to respond to Twilio requests (to your app) with XML responses.
   # There are 5 primary verbs (say, play, gather, record, dial) and 3 secondary (hangup, pause, redirect).
-  # Verbs can be chained and some nested.
+  # Verbs can be chained and, in some cases, nested.
+  #
+  # If your response consists of a single verb, you can use the inline form of a new verb instance:
+  #
+  #   Twilio::Verb.new.say('The time is 9:35 PM.')
+  #
+  # But if you need to chain several verbs together, just wrap them in a block and call the 'response' attribute:
+  #
+  #   verb = Twilio::Verb.new { |v|
+  #     v.dial('415-123-4567')
+  #     v.redirect('http://www.foo.com/nextInstructions')
+  #   }
+  #   verb.response
   class Verb
     
     attr_reader :response
@@ -29,7 +41,8 @@ module Twilio
     #   Twilio::Verb.new.say('Your PIN is 1234', :loop => 4)
     #   Twilio::Verb.new.say('Your PIN is 1 2 3 4', :loop => 4)
     # 
-    # If you need a longer pause between each loop, set the pause option:
+    # If you need a longer pause between each loop, instead of explicitly calling the Pause
+    # verb within a block, you can set the convenient pause option:
     #
     #   Twilio::Verb.new.say('Your PIN is 1 2 3 4', :loop => 4, :pause => true)
     #
@@ -66,7 +79,8 @@ module Twilio
     #   Twilio::Verb.new.play('http://foo.com/cowbell.mp3')
     #   Twilio::Verb.new.play('http://foo.com/cowbell.mp3', :loop => 3)
     #
-    # If you need a longer pause between each loop, set the pause option:
+    # If you need a longer pause between each loop, instead of explicitly calling the Pause
+    # verb within a block, you can set the convenient pause option:
     #
     #   Twilio::Verb.new.play('http://foo.com/cowbell.mp3', :loop => 3, :pause => true)
     #
