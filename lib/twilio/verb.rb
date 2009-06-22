@@ -3,11 +3,11 @@ module Twilio
   # There are 5 primary verbs (say, play, gather, record, dial) and 3 secondary (hangup, pause, redirect).
   # Verbs can be chained and, in some cases, nested.
   #
-  # If your response consists of a single verb, you can use the inline form of a new verb instance:
+  # If your response consists of a single verb, you can call a Verb class method:
   #
-  #   Twilio::Verb.new.say('The time is 9:35 PM.')
+  #   Twilio::Verb.say('The time is 9:35 PM.')
   #
-  # But if you need to chain several verbs together, just wrap them in a block and call the 'response' attribute:
+  # But if you need to chain several verbs together, just wrap them in an instance block and call the 'response' attribute:
   #
   #   verb = Twilio::Verb.new { |v|
   #     v.dial('415-123-4567')
@@ -17,6 +17,13 @@ module Twilio
   class Verb
     
     attr_reader :response
+    
+    class << self
+      def method_missing(method_id, *args) #:nodoc:
+        v = Verb.new
+        v.send(method_id, *args)
+      end
+    end
         
     def initialize(&block)
       @xml = Builder::XmlMarkup.new
@@ -32,24 +39,24 @@ module Twilio
     # Say is useful for dynamic text that is difficult to prerecord. 
     #
     # Examples:
-    #   Twilio::Verb.new.say('The time is 9:35 PM.')
-    #   Twilio::Verb.new.say('The time is 9:35 PM.', :loop => 3)
+    #   Twilio::Verb.say('The time is 9:35 PM.')
+    #   Twilio::Verb.say('The time is 9:35 PM.', :loop => 3)
     #
     # With numbers, 12345 will be spoken as "twelve thousand three hundred forty five" while
     # 1 2 3 4 5 will be spoken as "one two three four five."
     #
-    #   Twilio::Verb.new.say('Your PIN is 1234', :loop => 4)
-    #   Twilio::Verb.new.say('Your PIN is 1 2 3 4', :loop => 4)
+    #   Twilio::Verb.say('Your PIN is 1234', :loop => 4)
+    #   Twilio::Verb.say('Your PIN is 1 2 3 4', :loop => 4)
     # 
     # If you need a longer pause between each loop, instead of explicitly calling the Pause
     # verb within a block, you can set the convenient pause option:
     #
-    #   Twilio::Verb.new.say('Your PIN is 1 2 3 4', :loop => 4, :pause => true)
+    #   Twilio::Verb.say('Your PIN is 1 2 3 4', :loop => 4, :pause => true)
     #
     # Options (see http://www.twilio.com/docs/api_reference/TwiML/say) are passed in as a hash:
     #
-    #   Twilio::Verb.new.say('The time is 9:35 PM.', :voice => 'woman')
-    #   Twilio::Verb.new.say('The time is 9:35 PM.', {:voice => 'woman', :language => 'es'})
+    #   Twilio::Verb.say('The time is 9:35 PM.', :voice => 'woman')
+    #   Twilio::Verb.say('The time is 9:35 PM.', {:voice => 'woman', :language => 'es'})
     def say(*args)
       options = {:voice => 'man', :language => 'en', :loop => 1}
       args.each do |arg|
@@ -76,13 +83,13 @@ module Twilio
     
     # The Play verb plays an audio URL back to the caller. 
     # Examples:
-    #   Twilio::Verb.new.play('http://foo.com/cowbell.mp3')
-    #   Twilio::Verb.new.play('http://foo.com/cowbell.mp3', :loop => 3)
+    #   Twilio::Verb.play('http://foo.com/cowbell.mp3')
+    #   Twilio::Verb.play('http://foo.com/cowbell.mp3', :loop => 3)
     #
     # If you need a longer pause between each loop, instead of explicitly calling the Pause
     # verb within a block, you can set the convenient pause option:
     #
-    #   Twilio::Verb.new.play('http://foo.com/cowbell.mp3', :loop => 3, :pause => true)
+    #   Twilio::Verb.play('http://foo.com/cowbell.mp3', :loop => 3, :pause => true)
     #
     # Options (see http://www.twilio.com/docs/api_reference/TwiML/play) are passed in as a hash,
     # but only 'loop' is currently supported.
@@ -117,10 +124,10 @@ module Twilio
     # Options (see http://www.twilio.com/docs/api_reference/TwiML/gather) are passed in as a hash
     #
     # Examples:
-    #   Twilio::Verb.new.gather
-    #   Twilio::Verb.new.gather(:action => 'http://foobar.com')
-    #   Twilio::Verb.new.gather(:finishOnKey => '*') 
-    #   Twilio::Verb.new.gather(:action => 'http://foobar.com', :finishOnKey => '*') 
+    #   Twilio::Verb.gather
+    #   Twilio::Verb.gather(:action => 'http://foobar.com')
+    #   Twilio::Verb.gather(:finishOnKey => '*') 
+    #   Twilio::Verb.gather(:action => 'http://foobar.com', :finishOnKey => '*') 
     #
     # Gather also lets you nest the Play, Say, and Pause verbs:
     #
@@ -150,10 +157,10 @@ module Twilio
     # Options (see http://www.twilio.com/docs/api_reference/TwiML/record) are passed in as a hash
     #
     # Examples:
-    #   Twilio::Verb.new.record
-    #   Twilio::Verb.new.record(:action => 'http://foobar.com')
-    #   Twilio::Verb.new.record(:finishOnKey => '*') 
-    #   Twilio::Verb.new.record(:transcribe => true, :transcribeCallback => '/handle_transcribe')
+    #   Twilio::Verb.record
+    #   Twilio::Verb.record(:action => 'http://foobar.com')
+    #   Twilio::Verb.record(:finishOnKey => '*') 
+    #   Twilio::Verb.record(:transcribe => true, :transcribeCallback => '/handle_transcribe')
     def record(*args)
       options = args.shift
       output { @xml.Record(options) }
@@ -172,9 +179,9 @@ module Twilio
     # Options (see http://www.twilio.com/docs/api_reference/TwiML/dial) are passed in as a hash
     #
     # Examples:
-    #   Twilio::Verb.new.dial('415-123-4567')
-    #   Twilio::Verb.new.dial('415-123-4567', :action => 'http://foobar.com')
-    #   Twilio::Verb.new.dial('415-123-4567', {:timeout => 10, :callerId => '858-987-6543'}) 
+    #   Twilio::Verb.dial('415-123-4567')
+    #   Twilio::Verb.dial('415-123-4567', :action => 'http://foobar.com')
+    #   Twilio::Verb.dial('415-123-4567', {:timeout => 10, :callerId => '858-987-6543'}) 
     #
     # Twilio also supports an alternate form in which a Number object is nested inside Dial:
     #
@@ -259,7 +266,7 @@ module Twilio
     # Examples:
     #   If your response is only a hangup:
     #
-    #   Twilio::Verb.new.hangup
+    #   Twilio::Verb.hangup
     #
     #   If your response is chained:
     #

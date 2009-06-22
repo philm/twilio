@@ -104,7 +104,7 @@ dial_with_caller_id:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial callerId="858-987-6543">415-123-4567</Dial></Response>
   
 dial_with_timeout_and_caller_id:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial timeout="10" callerId="858-987-6543">415-123-4567</Dial></Response>
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial callerId="858-987-6543" timeout="10">415-123-4567</Dial></Response>
   
 dial_with_redirect:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial>415-123-4567</Dial><Redirect>http://www.foo.com/nextInstructions</Redirect></Response>
