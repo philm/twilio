@@ -121,10 +121,28 @@ module Twilio
     #   Twilio::Verb.new.gather(:action => 'http://foobar.com')
     #   Twilio::Verb.new.gather(:finishOnKey => '*') 
     #   Twilio::Verb.new.gather(:action => 'http://foobar.com', :finishOnKey => '*') 
+    #
+    # Gather also lets you nest the Play, Say, and Pause verbs:
+    #
+    #   verb = Twilio::Verb.new { |v|
+    #     v.gather(:action => '/process_gather', :method => 'GET) {
+    #       v.say('Please enter your account number followed by the pound sign')
+    #     }
+    #     v.say("We didn't receive any input. Goodbye!")
+    #   }
+    #   verb.response # represents the final xml output
     def gather(*args, &block)
-      options = args.shift
-      output { @xml.Gather(options) }
+      options = args.shift || {}
+      output { 
+        if block_given?
+          @xml.Gather(options) { block.call }
+        else
+          @xml.Gather(options)          
+        end
+      }
     end
+    
+    #play, say, pause
     
     # The Record verb records the caller's voice and returns a URL that links to a file 
     # containing the audio recording.
@@ -157,6 +175,17 @@ module Twilio
     #   Twilio::Verb.new.dial('415-123-4567')
     #   Twilio::Verb.new.dial('415-123-4567', :action => 'http://foobar.com')
     #   Twilio::Verb.new.dial('415-123-4567', {:timeout => 10, :callerId => '858-987-6543'}) 
+    #
+    # Twilio also supports an alternate form in which a Number object is nested inside Dial:
+    #
+    #   verb = Twilio::Verb.new { |v|
+    #     v.dial {
+    #       v.number('415-123-4567')
+    #       v.number('415-123-4568')
+    #       v.number('415-123-4569')
+    #     }
+    #   }
+    #   verb.response # represents the final xml output
     def dial(*args, &block)
       number_to_dial = ''
       options = {}
@@ -171,9 +200,15 @@ module Twilio
         end
       end
       
-      output { @xml.Dial(number_to_dial, options) }
+      output { 
+        if block_given?
+          @xml.Dial(options) { block.call }
+        else
+          @xml.Dial(number_to_dial, options)           
+        end
+      }
     end
-    
+        
     # The Pause (secondary) verb waits silently for a number of seconds. 
     # It is normally chained with other verbs. 
     #
@@ -235,6 +270,25 @@ module Twilio
     #   verb.response
     def hangup
       output { @xml.Hangup }
+    end
+    
+    # The Number element specifies a phone number. The number element has two optional attributes: sendDigits and url.
+    # Number elements can only be nested in Dial verbs
+    def number(*args)
+      number_to_dial = ''
+      options = {}
+      args.each do |arg|
+        case arg
+        when String
+          number_to_dial = arg
+        when Hash
+          options.merge!(arg)
+        else
+          raise ArgumentError, 'dial expects String or Hash argument'
+        end
+      end
+      
+      output { @xml.Number(number_to_dial, options) }
     end
           
     private

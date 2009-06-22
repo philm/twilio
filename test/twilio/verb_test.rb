@@ -80,6 +80,26 @@ class VerbTest < Test::Unit::TestCase #:nodoc: all
       assert_equal verb_response(:gather_with_all_options_set), Twilio::Verb.new.gather(:action => 'http://foobar.com', :method => 'GET', :timeout => 10, :finishOnKey => '*', :numDigits => 5)
     end
     
+    should "gather and say instructions" do
+      verb = Twilio::Verb.new { |v|
+        v.gather {
+          v.say('Please enter your account number followed by the pound sign')
+        }
+        v.say("We didn't receive any input. Goodbye!")
+      }
+      assert_equal verb_response(:gather_and_say_instructions), verb.response
+    end
+    
+    should "gather with timeout and say instructions" do
+      verb = Twilio::Verb.new { |v|
+        v.gather(:timeout => 10) {
+          v.say('Please enter your account number followed by the pound sign')
+        }
+        v.say("We didn't receive any input. Goodbye!")
+      }
+      assert_equal verb_response(:gather_with_timeout_and_say_instructions), verb.response
+    end
+    
     should "record" do
       assert_equal verb_response(:record), Twilio::Verb.new.record
     end
@@ -146,6 +166,26 @@ class VerbTest < Test::Unit::TestCase #:nodoc: all
         v.redirect('http://www.foo.com/nextInstructions')
       }
       assert_equal verb_response(:dial_with_redirect), verb.response
+    end
+    
+    should "dial with number and send digits" do
+      verb = Twilio::Verb.new { |v|
+        v.dial {
+          v.number('415-123-4567', :sendDigits => 'wwww1928')
+        }
+      }
+      assert_equal verb_response(:dial_with_number_and_send_digits), verb.response
+    end
+    
+    should "dial multiple numbers" do
+      verb = Twilio::Verb.new { |v|
+        v.dial {
+          v.number('415-123-4567')
+          v.number('415-123-4568')
+          v.number('415-123-4569')
+        }
+      }
+      assert_equal verb_response(:dial_multiple_numbers), verb.response
     end
     
     should "hangup" do

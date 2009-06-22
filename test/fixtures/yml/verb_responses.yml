@@ -35,7 +35,7 @@ play_mp3_two_times_with_pause:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Play>http://foo.com/cowbell.mp3</Play><Pause/><Play>http://foo.com/cowbell.mp3</Play></Response>
   
 gather:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather></Gather></Response>
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather/></Response>
 
 gather_with_action:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather action="http://foobar.com"/></Response>
@@ -53,8 +53,14 @@ gather_with_num_digits:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather numDigits="5"/></Response>
   
 gather_with_all_options_set:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather method="GET" finishOnKey="*" timeout="10" action="http://foobar.com" numDigits="5"/></Response>
-
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather action="http://foobar.com" numDigits="5" method="GET" timeout="10" finishOnKey="*"/></Response>
+  
+gather_and_say_instructions:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather><Say loop="1" language="en" voice="man">Please enter your account number followed by the pound sign</Say></Gather><Say loop="1" language="en" voice="man">We didn't receive any input. Goodbye!</Say></Response>
+  
+gather_with_timeout_and_say_instructions:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather timeout="10"><Say loop="1" language="en" voice="man">Please enter your account number followed by the pound sign</Say></Gather><Say loop="1" language="en" voice="man">We didn't receive any input. Goodbye!</Say></Response>
+      
 record:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Record></Record></Response>
   
@@ -98,10 +104,16 @@ dial_with_caller_id:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial callerId="858-987-6543">415-123-4567</Dial></Response>
   
 dial_with_timeout_and_caller_id:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial callerId="858-987-6543" timeout="10">415-123-4567</Dial></Response>
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial timeout="10" callerId="858-987-6543">415-123-4567</Dial></Response>
   
 dial_with_redirect:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial>415-123-4567</Dial><Redirect>http://www.foo.com/nextInstructions</Redirect></Response>
-  
+
+dial_with_number_and_send_digits:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial><Number sendDigits="wwww1928">415-123-4567</Number></Dial></Response>  
+
+dial_multiple_numbers:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial><Number>415-123-4567</Number><Number>415-123-4568</Number><Number>415-123-4569</Number></Dial></Response> 
+      
 hangup:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Hangup/></Response>  
