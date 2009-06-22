@@ -23,6 +23,10 @@ Now instantiate other objects by passing in the connection:
 When Twilio's servers ping your callback url, you can respond with the Twilio Verb object. For example,
 in a Ruby on Rails application, you could do the following inside a controller class:
 
+  Twilio::Verb.new.dial('415-123-4567')
+  
+and you can nest multiple verbs inside a block:
+
   verb = Twilio::Verb.new { |v|
     v.say("The time is #{Time.now}")
     v.hangup
