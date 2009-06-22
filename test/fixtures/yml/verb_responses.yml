@@ -13,6 +13,12 @@ say_hi_three_times:
 say_hi_three_times_with_pause:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Say language="en" voice="man">hi</Say><Pause/><Say language="en" voice="man">hi</Say><Pause/><Say language="en" voice="man">hi</Say></Response>
   
+say_hi_with_pause:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="1" language="en" voice="man">hi</Say><Pause/></Response>
+
+say_hi_with_pause_and_say_bye:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="1" language="en" voice="man">hi</Say><Pause/><Say loop="1" language="en" voice="man">bye</Say></Response>
+      
 play_mp3:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Play loop="1">http://foo.com/cowbell.mp3</Play></Response>
   
@@ -41,7 +47,7 @@ gather_with_num_digits:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather numDigits="5"/></Response>
   
 gather_with_all_options_set:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather finishOnKey="*" method="GET" action="http://foobar.com" numDigits="5" timeout="10"/></Response>
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather finishOnKey="*" method="GET" action="http://foobar.com" timeout="10" numDigits="5"/></Response>
   
 record:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Record></Record></Response>
