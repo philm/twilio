@@ -126,9 +126,39 @@ module Twilio
         xml.Response { xml.Record(options) }
       end
       
-      #Not yet implemented 
+      # The Dial verb connects the current caller to an another phone. If the called party picks up, 
+      # the two parties are connected and can communicate until one hangs up. If the called party does 
+      # not pick up, if a busy signal is received, or the number doesn't exist, the dial verb will finish.
+      #
+      # If an action verb is provided, Twilio will submit the outcome of the call attempt to the action URL. 
+      # If no action is provided, Dial will fall through to the next verb in the document.
+      #
+      # Note: this is different than the behavior of Record and Gather. Dial does not submit back to the 
+      # current document URL if no action is provided.
+      #
+      # Options (see http://www.twilio.com/docs/api_reference/TwiML/dial) are passed in as a hash
+      #
+      # Examples:
+      #   Twilio::Verb.dial('415-123-4567')
+      #   Twilio::Verb.dial('415-123-4567', :action => 'http://foobar.com')
+      #   Twilio::Verb.dial('415-123-4567', {:timeout => 10, :callerId => '858-987-6543'}) 
       def dial(*args, &block)
-        raise NotImplementedError.new 'Not yet implemented - coming soon'
+        number_to_dial = ''
+        options = {}
+        args.each do |arg|
+          case arg
+          when String
+            number_to_dial = arg
+          when Hash
+            options.merge!(arg)
+          else
+            raise ArgumentError, 'dial expects String or Hash argument'
+          end
+        end
+        
+        xml = Builder::XmlMarkup.new
+        xml.instruct!
+        xml.Response { xml.Dial(number_to_dial, options) }
       end
 
       def method_missing(method_id, *args) #:nodoc:

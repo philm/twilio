@@ -90,8 +90,36 @@ class VerbTest < Test::Unit::TestCase #:nodoc: all
       assert_equal verb_response(:record_with_transcribe), Twilio::Verb.record(:transcribe => true, :transcribeCallback => '/handle_transcribe')            
     end
     
-    should "raise not implemented error with dial" do
-      assert_raise(NotImplementedError) { Twilio::Verb.dial }
+    should "dial" do
+      assert_equal verb_response(:dial), Twilio::Verb.dial('415-123-4567')
+    end
+    
+    should "dial with action" do
+      assert_equal verb_response(:dial_with_action), Twilio::Verb.dial('415-123-4567', :action => 'http://foobar.com')
+    end
+    
+    should "dial with GET method" do
+      assert_equal verb_response(:dial_with_get_method), Twilio::Verb.dial('415-123-4567', :method => 'GET')
+    end
+    
+    should "dial with timeout" do
+      assert_equal verb_response(:dial_with_timeout), Twilio::Verb.dial('415-123-4567', :timeout => 10)
+    end
+    
+    should "dial with hangup on star" do
+      assert_equal verb_response(:dial_with_hangup_on_star), Twilio::Verb.dial('415-123-4567', :hangupOnStar => true)
+    end
+    
+    should "dial with time limit" do
+      assert_equal verb_response(:dial_with_time_limit), Twilio::Verb.dial('415-123-4567', :timeLimit => 3600)
+    end
+    
+    should "dial with caller id" do
+      assert_equal verb_response(:dial_with_caller_id), Twilio::Verb.dial('415-123-4567', :callerId => '858-987-6543')
+    end
+    
+    should "dial with timeout and caller id" do
+      assert_equal verb_response(:dial_with_timeout_and_caller_id), Twilio::Verb.dial('415-123-4567', {:timeout => 10, :callerId => '858-987-6543'})
     end
   end
   

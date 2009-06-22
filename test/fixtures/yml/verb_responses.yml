@@ -41,7 +41,7 @@ gather_with_num_digits:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather numDigits="5"/></Response>
   
 gather_with_all_options_set:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather action="http://foobar.com" numDigits="5" method="GET" timeout="10" finishOnKey="*"/></Response>
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather finishOnKey="*" method="GET" action="http://foobar.com" numDigits="5" timeout="10"/></Response>
   
 record:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Record></Record></Response>
@@ -62,4 +62,28 @@ record_with_max_length:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Record maxLength="1800"/></Response>
   
 record_with_transcribe:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Record transcribeCallback="/handle_transcribe" transcribe="true"/></Response>  
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Record transcribe="true" transcribeCallback="/handle_transcribe"/></Response>
+
+dial:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial>415-123-4567</Dial></Response>
+  
+dial_with_action:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial action="http://foobar.com">415-123-4567</Dial></Response>
+  
+dial_with_get_method:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial method="GET">415-123-4567</Dial></Response>
+  
+dial_with_timeout:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial timeout="10">415-123-4567</Dial></Response>
+  
+dial_with_hangup_on_star:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial hangupOnStar="true">415-123-4567</Dial></Response>
+  
+dial_with_time_limit:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial timeLimit="3600">415-123-4567</Dial></Response>
+  
+dial_with_caller_id:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial callerId="858-987-6543">415-123-4567</Dial></Response>
+  
+dial_with_timeout_and_caller_id:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial callerId="858-987-6543" timeout="10">415-123-4567</Dial></Response>
