@@ -1,17 +1,20 @@
 module Twilio
   # A Notification represenents a log entry made by Twilio in the course of handling 
   # your calls or using the REST API.
+  # Example:
+  #   Twilio.connect('my_twilio_sid', 'my_auth_token')
+  #   Twilio::Notification.list
   class Notification < TwilioObject
     def list(optional = {})
-      self.connection.class.get('/Notifications', :query => optional)
+      Twilio.get('/Notifications', :query => optional)
     end
     
     def get(notification_sid)
-      self.connection.class.get("/Notifications/#{notification_sid}")
+      Twilio.get("/Notifications/#{notification_sid}")
     end
     
     def delete(notification_sid)
-      self.connection.class.delete("/Notifications/#{notification_sid}")
+      Twilio.delete("/Notifications/#{notification_sid}")
     end
   end
 end

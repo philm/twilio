@@ -1,9 +1,12 @@
 module Twilio
   # This sub-resource represents only Local phone numbers, or in other words, not toll-free numbers. 
-  # Also allows you to request a new local phone number be added to your account. 
+  # Also allows you to request a new local phone number be added to your account.
+  # Example:
+  #   Twilio.connect('my_twilio_sid', 'my_auth_token')
+  #   Twilio::LocalPhoneNumber.list
   class LocalPhoneNumber < TwilioObject
     def create(url, area_code = nil, method = 'POST', friendly_name = nil)
-      self.connection.class.post("/IncomingPhoneNumbers/Local", :body => {
+      Twilio.post("/IncomingPhoneNumbers/Local", :body => {
         :Url => url, 
         :AreaCode => area_code, 
         :Method => method,
@@ -12,7 +15,7 @@ module Twilio
     end
     
     def list
-      self.connection.class.get("/IncomingPhoneNumbers/Local")
+      Twilio.get("/IncomingPhoneNumbers/Local")
     end
   end
 end

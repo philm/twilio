@@ -11,5 +11,16 @@ class ConnectionTest < Test::Unit::TestCase #:nodoc: all
         assert_equal "#{Twilio::Connection::TWILIO_URL}/mysid", @connection.class.base_uri
       end
     end
+    
+    context "when invoked as class method" do
+      setup do
+        Twilio.connect('mysid', 'mytoken')
+      end
+      
+      should "have correct url" do
+        assert_equal "#{Twilio::TWILIO_URL}/mysid", Twilio.base_uri
+      end
+    end
+
   end
 end

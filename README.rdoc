@@ -8,17 +8,14 @@ For an overview of the Twilio Gem and a sample use case, check out http://www.we
 
 == Calling the Twilio REST API
 
-First create a connection object:
+First set your credentials by calling the connect method:
 
-  c = Twilio::Connection.new('my_twilio_sid', 'my_auth_token')
+  Twilio.connect('my_twilio_sid', 'my_auth_token')
   
-Now instantiate other objects by passing in the connection:
+Now call any of the Twilio classes:
   
-  call = Twilio::Call.new(c)
-  call.make('1234567890', '9876543210', 'http://mysite.com/connected_call')
-  
-  recording = Twilio::Recording.new(c)
-  recording.list
+  Twilio::Call.make('1234567890', '9876543210', 'http://mysite.com/connected_call')
+  Twilio::Recording.list
   
 == Responding to Twilio
 
