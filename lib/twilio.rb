@@ -1,5 +1,3 @@
-$:.unshift(File.dirname(__FILE__))
-
 #--
 # Copyright (c) 2009 Phil Misiowiec, phil@webficient.com
 #
@@ -23,12 +21,8 @@ $:.unshift(File.dirname(__FILE__))
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-require 'rubygems'
-gem 'httparty', '>= 0.4.3'
 require 'httparty'
-gem 'builder', '>= 2.1.2'
 require 'builder'
-
 require 'twilio/twilio_object'
 require 'twilio/account'
 require 'twilio/call'

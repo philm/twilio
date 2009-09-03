@@ -1,8 +1,6 @@
-require 'rubygems'
 require 'test/unit'
 require 'fakeweb'
 require 'shoulda'
-require 'matchy'
 require 'yaml'
 require 'twilio'
 

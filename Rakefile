@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'rake'
 
 begin
@@ -9,8 +8,8 @@ begin
     gem.email = "github@webficient.com"
     gem.homepage = "http://github.com/webficient/twilio"
     gem.authors = ["Phil Misiowiec"]
-    gem.add_dependency 'builder'
-    gem.add_dependency 'httparty'
+    gem.add_dependency 'builder', '>= 2.1.2'
+    gem.add_dependency 'httparty', '>= 0.4.3'
   end
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
