@@ -4,12 +4,9 @@ require 'fakeweb'
 require 'shoulda'
 require 'matchy'
 require 'yaml'
+require 'twilio'
 
 FakeWeb.allow_net_connect = false
-
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'twilio'
 
 class Test::Unit::TestCase #:nodoc: all
 end
