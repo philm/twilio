@@ -1,30 +1,3 @@
-say_hi:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="1" language="en" voice="man">hi</Say></Response>
-
-say_hi_with_female_voice:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="1" language="en" voice="woman">hi</Say></Response>
-    
-say_hi_in_spanish_with_female_voice:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="1" language="es" voice="woman">hola</Say></Response>
-      
-say_hi_three_times:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="3" language="en" voice="man">hi</Say></Response>
-  
-say_hi_three_times_with_pause:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say language="en" voice="man">hi</Say><Pause/><Say language="en" voice="man">hi</Say><Pause/><Say language="en" voice="man">hi</Say></Response>
-  
-say_hi_with_pause:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="1" language="en" voice="man">hi</Say><Pause/></Response>
-
-say_hi_with_pause_and_say_bye:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="1" language="en" voice="man">hi</Say><Pause></Pause><Say loop="1" language="en" voice="man">bye</Say></Response>
-  
-say_hi_with_2_second_pause_and_say_bye:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="1" language="en" voice="man">hi</Say><Pause length="2"/><Say loop="1" language="en" voice="man">bye</Say></Response>
-  
-say_hi_and_hangup:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Say loop="1" language="en" voice="man">hi</Say><Hangup/></Response>  
-  
 play_mp3:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Play loop="1">http://foo.com/cowbell.mp3</Play></Response>
   
@@ -52,15 +25,6 @@ gather_with_finish_key:
 gather_with_num_digits:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather numDigits="5"/></Response>
   
-gather_with_all_options_set:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather finishOnKey="*" action="http://foobar.com" method="GET" numDigits="5" timeout="10"/></Response>  
-  
-gather_and_say_instructions:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather><Say loop="1" language="en" voice="man">Please enter your account number followed by the pound sign</Say></Gather><Say loop="1" language="en" voice="man">We didn't receive any input. Goodbye!</Say></Response>
-  
-gather_with_timeout_and_say_instructions:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather timeout="10"><Say loop="1" language="en" voice="man">Please enter your account number followed by the pound sign</Say></Gather><Say loop="1" language="en" voice="man">We didn't receive any input. Goodbye!</Say></Response>
-      
 record:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Record></Record></Response>
   
@@ -78,9 +42,6 @@ record_with_finish_key:
 
 record_with_max_length:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Record maxLength="1800"/></Response>
-  
-record_with_transcribe:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Record transcribe="true" transcribeCallback="/handle_transcribe"/></Response>
 
 dial:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial>415-123-4567</Dial></Response>
@@ -102,9 +63,6 @@ dial_with_time_limit:
   
 dial_with_caller_id:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial callerId="858-987-6543">415-123-4567</Dial></Response>
-  
-dial_with_timeout_and_caller_id:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial callerId="858-987-6543" timeout="10">415-123-4567</Dial></Response>
   
 dial_with_redirect:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial>415-123-4567</Dial><Redirect>http://www.foo.com/nextInstructions</Redirect></Response>
