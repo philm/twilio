@@ -86,11 +86,8 @@ class VerbTest < Test::Unit::TestCase #:nodoc: all
                                           :finishOnKey => '*', 
                                           :method      => 'GET', 
                                           :numDigits   => 5,
-                                          :timeout     => 10 
-
-      
-      
-      assert_match %r{Gather( finishOnKey="*"| action="http://foobar.com"| method="GET"| numDigits="5"| timeout="10"){5}}, verb_response       
+                                          :timeout     => 10      
+      assert_match %r{<Gather( finishOnKey="\*"| action="http://foobar.com"| method="GET"| numDigits="5"| timeout="10"){5}/>}, verb_response
     end
     
     should "gather and say instructions" do
