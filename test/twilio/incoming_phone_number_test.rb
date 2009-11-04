@@ -7,15 +7,13 @@ class IncomingPhoneNumberTest < Test::Unit::TestCase #:nodoc: all
     end
 
     should "be retrievable individually" do
-      fake_response = fixture(:incoming_phone_number)
-      FakeWeb.register_uri(:get, twilio_url('IncomingPhoneNumbers/PNe536dfda7c6184afab78d980cb8cdf43'), :string => fake_response)
-      assert_equal Twilio::IncomingPhoneNumber.get('PNe536dfda7c6184afab78d980cb8cdf43'), fake_response
+      assert_equal  stub_response(:get, :incoming_phone_number, :resource => 'IncomingPhoneNumbers/PNe536dfda7c6184afab78d980cb8cdf43'),
+        Twilio::IncomingPhoneNumber.get('PNe536dfda7c6184afab78d980cb8cdf43')
     end
     
     should "be retrievable as a list" do
-      fake_response = fixture(:incoming_phone_numbers)
-      FakeWeb.register_uri(:get, twilio_url('IncomingPhoneNumbers'), :string => fake_response)
-      assert_equal Twilio::IncomingPhoneNumber.list, fake_response
+      assert_equal stub_response(:get, :incoming_phone_numbers, :resource => 'IncomingPhoneNumbers'),
+        Twilio::IncomingPhoneNumber.list
     end
     
     context "using deprecated API" do
@@ -25,11 +23,9 @@ class IncomingPhoneNumberTest < Test::Unit::TestCase #:nodoc: all
       end
 
       should "be retrievable individually" do
-        fake_response = fixture(:incoming_phone_number)
-        FakeWeb.register_uri(:get, twilio_url('IncomingPhoneNumbers/PNe536dfda7c6184afab78d980cb8cdf43'), :string => fake_response)
-        assert_equal @incoming.get('PNe536dfda7c6184afab78d980cb8cdf43'), fake_response
+        assert_equal stub_response(:get, :incoming_phone_number, :resource => 'IncomingPhoneNumbers/PNe536dfda7c6184afab78d980cb8cdf43'), 
+          @incoming.get('PNe536dfda7c6184afab78d980cb8cdf43')
       end
     end
-    
   end
 end

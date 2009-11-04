@@ -7,19 +7,17 @@ class NotificationTest < Test::Unit::TestCase #:nodoc: all
     end
 
     should "be retrievable as a list" do
-      fake_response = fixture(:notifications)
-      FakeWeb.register_uri(:get, twilio_url('Notifications'), :string => fake_response)
-      assert_equal Twilio::Notification.list, fake_response
+      assert_equal stub_response(:get, :notifications, :resource => 'Notifications'), Twilio::Notification.list
     end
     
     should "be retrievable individually" do
-      fake_response = fixture(:notification)
-      FakeWeb.register_uri(:get, twilio_url('Notifications/NO1fb7086ceb85caed2265f17d7bf7981c'), :string => fake_response)
-      assert_equal Twilio::Notification.get('NO1fb7086ceb85caed2265f17d7bf7981c'), fake_response
+      assert_equal stub_response(:get, :notification, :resource => 'Notifications/NO1fb7086ceb85caed2265f17d7bf7981c'), 
+        Twilio::Notification.get('NO1fb7086ceb85caed2265f17d7bf7981c')
     end
     
     should "be deleted" do
-      FakeWeb.register_uri(:delete, twilio_url('Notifications/NO1fb7086ceb85caed2265f17d7bf7981c'), :status => [ 204, "HTTPNoContent" ])
+      stub_response(:delete, :notification, { :resource => 'Notifications/NO1fb7086ceb85caed2265f17d7bf7981c', 
+                                              :status   => [ 204, "HTTPNoContent" ] })
       assert Twilio::Notification.delete('NO1fb7086ceb85caed2265f17d7bf7981c')
     end
     
@@ -30,11 +28,8 @@ class NotificationTest < Test::Unit::TestCase #:nodoc: all
       end
 
       should "be retrievable as a list" do
-        fake_response = fixture(:notifications)
-        FakeWeb.register_uri(:get, twilio_url('Notifications'), :string => fake_response)
-        assert_equal @notification.list, fake_response
+        assert_equal stub_response(:get, :notifications, :resource => 'Notifications'), @notification.list
       end
     end
-    
   end
 end

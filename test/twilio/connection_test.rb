@@ -21,6 +21,5 @@ class ConnectionTest < Test::Unit::TestCase #:nodoc: all
         assert_equal "#{Twilio::TWILIO_URL}/mysid", Twilio.base_uri
       end
     end
-
   end
 end

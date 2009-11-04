@@ -7,15 +7,13 @@ class TollFreePhoneNumberTest < Test::Unit::TestCase #:nodoc: all
     end
 
     should "be retrievable as a list" do
-      fake_response = fixture(:incoming_phone_numbers)
-      FakeWeb.register_uri(:get, twilio_url('IncomingPhoneNumbers/TollFree'), :string => fake_response)
-      assert_equal Twilio::TollFreePhoneNumber.list, fake_response
+      assert_equal stub_response(:get, :incoming_phone_numbers, :resource => 'IncomingPhoneNumbers/TollFree'),
+        Twilio::TollFreePhoneNumber.list
     end
     
     should "be created" do
-      fake_response = fixture(:incoming_phone_number)
-      FakeWeb.register_uri(:post, twilio_url('IncomingPhoneNumbers/TollFree'), :string => fake_response)
-      assert_equal Twilio::TollFreePhoneNumber.create('http://test.local/call_handler'), fake_response
+      assert_equal stub_response(:post, :incoming_phone_number, :resource => 'IncomingPhoneNumbers/TollFree'),
+        Twilio::TollFreePhoneNumber.create('http://test.local/call_handler')
     end
     
     context "using deprecated API" do
@@ -25,11 +23,9 @@ class TollFreePhoneNumberTest < Test::Unit::TestCase #:nodoc: all
       end
 
       should "be retrievable as a list" do
-        fake_response = fixture(:incoming_phone_numbers)
-        FakeWeb.register_uri(:get, twilio_url('IncomingPhoneNumbers/TollFree'), :string => fake_response)
-        assert_equal @toll_free.list, fake_response
+        assert_equal stub_response(:get, :incoming_phone_numbers, :resource => 'IncomingPhoneNumbers/TollFree'),
+          @toll_free.list
       end
     end
-    
   end
 end

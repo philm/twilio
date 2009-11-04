@@ -7,33 +7,29 @@ class RecordingTest < Test::Unit::TestCase #:nodoc: all
     end
 
     should "be retrievable as a list" do
-      fake_response = fixture(:recordings)
-      FakeWeb.register_uri(:get, twilio_url('Recordings'), :string => fake_response)
-      assert_equal Twilio::Recording.list, fake_response
+      assert_equal stub_response(:get, :recordings, :resource => 'Recordings'), Twilio::Recording.list
     end
     
     should "be retrievable individually" do
-      fake_response = fixture(:recording)
-      FakeWeb.register_uri(:get, twilio_url('Recordings/RE41331862605f3d662488fdafda2e175f'), :string => fake_response)
-      assert_equal Twilio::Recording.get('RE41331862605f3d662488fdafda2e175f'), fake_response
+      assert_equal stub_response(:get, :recording, :resource => 'Recordings/RE41331862605f3d662488fdafda2e175f'),
+        Twilio::Recording.get('RE41331862605f3d662488fdafda2e175f')
     end
     
     should "be deleted" do
-      FakeWeb.register_uri(:delete, twilio_url('Recordings/RE41331862605f3d662488fdafda2e175f'), :status => [ 204, "HTTPNoContent" ])
+      stub_response(:delete, :recording, :resource => 'Recordings/RE41331862605f3d662488fdafda2e175f',
+                                         :status   => [ 204, "HTTPNoContent" ])
       assert Twilio::Recording.delete('RE41331862605f3d662488fdafda2e175f')
     end
     
     context "with transcriptions" do
       should "be retrievable as a list" do
-        fake_response = fixture(:transcriptions)
-        FakeWeb.register_uri(:get, twilio_url('Recordings/RE41331862605f3d662488fdafda2e175f/Transcriptions'), :string => fake_response)
-        assert_equal Twilio::Recording.transcriptions('RE41331862605f3d662488fdafda2e175f'), fake_response
+        assert_equal stub_response(:get, :transcriptions, :resource => 'Recordings/RE41331862605f3d662488fdafda2e175f/Transcriptions'),
+          Twilio::Recording.transcriptions('RE41331862605f3d662488fdafda2e175f')
       end
 
       should "be retrievable individually" do
-        fake_response = fixture(:transcription)
-        FakeWeb.register_uri(:get, twilio_url('Recordings/RE41331862605f3d662488fdafda2e175f/Transcriptions/TRbdece5b75f2cd8f6ef38e0a10f5c4447'), :string => fake_response)
-        assert_equal Twilio::Recording.transcriptions('RE41331862605f3d662488fdafda2e175f', 'TRbdece5b75f2cd8f6ef38e0a10f5c4447'), fake_response
+        assert_equal stub_response(:get, :transcription, :resource => 'Recordings/RE41331862605f3d662488fdafda2e175f/Transcriptions/TRbdece5b75f2cd8f6ef38e0a10f5c4447'),
+          Twilio::Recording.transcriptions('RE41331862605f3d662488fdafda2e175f', 'TRbdece5b75f2cd8f6ef38e0a10f5c4447')
       end
     end
   
@@ -44,9 +40,7 @@ class RecordingTest < Test::Unit::TestCase #:nodoc: all
       end
 
       should "be retrievable as a list" do
-        fake_response = fixture(:recordings)
-        FakeWeb.register_uri(:get, twilio_url('Recordings'), :string => fake_response)
-        assert_equal @recording.list, fake_response
+        assert_equal stub_response(:get, :recordings, :resource => 'Recordings'), @recording.list
       end
     end
   end

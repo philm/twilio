@@ -7,31 +7,27 @@ class OutgoingCallerIdTest < Test::Unit::TestCase #:nodoc: all
     end
 
     should "be retrievable as a list" do
-      fake_response = fixture(:outgoing_caller_ids)
-      FakeWeb.register_uri(:get, twilio_url('OutgoingCallerIds'), :string => fake_response)
-      assert_equal Twilio::OutgoingCallerId.list, fake_response
+      assert_equal stub_response(:get, :outgoing_caller_ids, :resource => 'OutgoingCallerIds'), Twilio::OutgoingCallerId.list
     end
     
     should "be retrievable individually" do
-      fake_response = fixture(:outgoing_caller_id)
-      FakeWeb.register_uri(:get, twilio_url('OutgoingCallerIds/PNe536dfda7c6184afab78d980cb8cdf43'), :string => fake_response)
-      assert_equal Twilio::OutgoingCallerId.get('PNe536dfda7c6184afab78d980cb8cdf43'), fake_response
+      assert_equal stub_response(:get, :outgoing_caller_id, :resource => 'OutgoingCallerIds/PNe536dfda7c6184afab78d980cb8cdf43'),
+        Twilio::OutgoingCallerId.get('PNe536dfda7c6184afab78d980cb8cdf43')
     end
     
     should "be created" do
-      fake_response = fixture(:outgoing_caller_id_new)
-      FakeWeb.register_uri(:post, twilio_url('OutgoingCallerIds'), :string => fake_response)
-      assert_equal Twilio::OutgoingCallerId.create('4158675309', 'My Home Phone'), fake_response
+      assert_equal stub_response(:post, :outgoing_caller_id_new, :resource => 'OutgoingCallerIds'),
+        Twilio::OutgoingCallerId.create('4158675309', 'My Home Phone')
     end
     
     should "be able to update name" do
-      fake_response = fixture(:outgoing_caller_id)
-      FakeWeb.register_uri(:put, twilio_url('OutgoingCallerIds/PNe536dfda7c6184afab78d980cb8cdf43'), :string => fake_response)
-      assert_equal Twilio::OutgoingCallerId.update_name('PNe536dfda7c6184afab78d980cb8cdf43', 'My office line'), fake_response
+      assert_equal stub_response(:put, :outgoing_caller_id, :resource => 'OutgoingCallerIds/PNe536dfda7c6184afab78d980cb8cdf43'),
+        Twilio::OutgoingCallerId.update_name('PNe536dfda7c6184afab78d980cb8cdf43', 'My office line')
     end
     
     should "be deleted" do
-      FakeWeb.register_uri(:delete, twilio_url('OutgoingCallerIds/PNe536dfda7c6184afab78d980cb8cdf43'), :status => [ 204, "HTTPNoContent" ])
+      stub_response(:delete, :outgoing_caller_id, :resource => 'OutgoingCallerIds/PNe536dfda7c6184afab78d980cb8cdf43', 
+                                                  :status   => [ 204, "HTTPNoContent" ])
       assert Twilio::OutgoingCallerId.delete('PNe536dfda7c6184afab78d980cb8cdf43')
     end
     
@@ -42,9 +38,7 @@ class OutgoingCallerIdTest < Test::Unit::TestCase #:nodoc: all
       end
 
       should "be retrievable as a list" do
-        fake_response = fixture(:outgoing_caller_ids)
-        FakeWeb.register_uri(:get, twilio_url('OutgoingCallerIds'), :string => fake_response)
-        assert_equal @caller_id.list, fake_response
+        assert_equal stub_response(:get, :outgoing_caller_ids, :resource => 'OutgoingCallerIds'), @caller_id.list
       end
     end
   end
