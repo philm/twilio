@@ -24,12 +24,12 @@ by providing a Twilio Verb class.
 
 For example, in a Ruby on Rails application, you could do the following inside a controller class:
 
-  Twilio::Verb.dial('415-123-4567')
+  Twilio::Verb.dial '415-123-4567'
   
 and you can nest multiple verbs inside a block:
 
   verb = Twilio::Verb.new {
-    say("The time is #{Time.now}")
+    say "The time is #{Time.now}"
     hangup
   }
   verb.response
