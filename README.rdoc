@@ -34,6 +34,12 @@ and you can nest multiple verbs inside a block:
   }
   verb.response
 
+== Installation
+
+  sudo gem install twilio -s http://gemcutter.org
+  
+If you need to tweak the source code, clone this repository and do a rake build and rake install.
+
 == Copyright
 
 Copyright (c) 2009 Phil Misiowiec, Webficient LLC. See LICENSE for details.
