@@ -18,6 +18,10 @@ module Twilio
       Twilio.get("/Calls/#{call_sid}")
     end
     
+    def redirect(call_sid, new_url, url_action = 'POST')
+      Twilio.post("/Calls/#{call_sid}", :body => {:CurrentUrl => new_url, :CurrentMethod => url_action})
+    end
+    
     def segments(call_sid, call_segment_sid = nil)
       Twilio.get("/Calls/#{call_sid}/Segments#{ '/' + call_segment_sid if call_segment_sid }")
     end

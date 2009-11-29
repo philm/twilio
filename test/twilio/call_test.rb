@@ -20,6 +20,11 @@ class CallTest < Test::Unit::TestCase #:nodoc: all
         Twilio::Call.make('4158675309', '4155551212', 'http://test.local/call_handler')
     end
     
+    should "be redirected" do
+      assert_equal stub_response(:post, :call_redirected, :resource => 'Calls/CA42ed11f93dc08b952027ffbc406d0868'),
+        Twilio::Call.redirect('CA42ed11f93dc08b952027ffbc406d0868', 'http://www.myapp.com/myhandler.php')
+    end
+    
     context "with segments" do
       should "returns a list of Call resources that were segments created in the same call" do
         assert_equal stub_response(:get, :calls, :resource => 'Calls/CA42ed11f93dc08b952027ffbc406d0868/Segments'),
