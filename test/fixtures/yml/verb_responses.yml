@@ -76,8 +76,8 @@ dial_multiple_numbers:
 dial_conference:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial><Conference>MyRoom</Conference></Dial></Response>
 
-dial_moderated_conference:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial><Conference mute="false" startConferenceOnEnter="true" endConferenceOnExit="true">MyRoom</Conference></Dial></Response>
+dial_muted_conference:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial><Conference mute="true">MyRoom</Conference></Dial></Response>
       
 hangup:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Hangup/></Response>  

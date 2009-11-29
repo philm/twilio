@@ -210,13 +210,13 @@ class VerbTest < Test::Unit::TestCase #:nodoc: all
       assert_equal verb_response(:dial_conference), verb.response
     end
     
-    should "dial a moderated conference" do
+    should "dial a muted conference" do
       verb = Twilio::Verb.new {
         dial {
-          conference 'MyRoom', :mute => :false, :startConferenceOnEnter => true, :endConferenceOnExit => true
+          conference 'MyRoom', :mute => :true
         }
       }
-      assert_equal verb_response(:dial_moderated_conference), verb.response
+      assert_equal verb_response(:dial_muted_conference), verb.response
     end
     
     should "hangup" do
