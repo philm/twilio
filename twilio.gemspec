@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{twilio}
-  s.version = "2.4.1"
+  s.version = "2.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Phil Misiowiec"]
-  s.date = %q{2009-11-03}
+  s.date = %q{2009-11-28}
   s.email = %q{github@webficient.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
      "lib/twilio.rb",
      "lib/twilio/account.rb",
      "lib/twilio/call.rb",
+     "lib/twilio/conference.rb",
      "lib/twilio/connection.rb",
      "lib/twilio/incoming_phone_number.rb",
      "lib/twilio/local_phone_number.rb",
@@ -37,7 +38,13 @@ Gem::Specification.new do |s|
      "test/fixtures/xml/account_renamed.xml",
      "test/fixtures/xml/call.xml",
      "test/fixtures/xml/call_new.xml",
+     "test/fixtures/xml/call_redirected.xml",
      "test/fixtures/xml/calls.xml",
+     "test/fixtures/xml/conference.xml",
+     "test/fixtures/xml/conference_participant.xml",
+     "test/fixtures/xml/conference_participant_muted.xml",
+     "test/fixtures/xml/conference_participants.xml",
+     "test/fixtures/xml/conferences.xml",
      "test/fixtures/xml/incoming_phone_number.xml",
      "test/fixtures/xml/incoming_phone_numbers.xml",
      "test/fixtures/xml/notification.xml",
@@ -53,6 +60,7 @@ Gem::Specification.new do |s|
      "test/test_helper.rb",
      "test/twilio/account_test.rb",
      "test/twilio/call_test.rb",
+     "test/twilio/conference_test.rb",
      "test/twilio/connection_test.rb",
      "test/twilio/incoming_phone_number_test.rb",
      "test/twilio/local_phone_number_test.rb",
@@ -72,6 +80,7 @@ Gem::Specification.new do |s|
     "test/test_helper.rb",
      "test/twilio/account_test.rb",
      "test/twilio/call_test.rb",
+     "test/twilio/conference_test.rb",
      "test/twilio/connection_test.rb",
      "test/twilio/incoming_phone_number_test.rb",
      "test/twilio/local_phone_number_test.rb",
