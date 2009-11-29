@@ -1,0 +1,12 @@
+<TwilioResponse>
+  <Participant>
+    <ConferenceSid>CF9f2ead1ae43cdabeab102fa30d938378</ConferenceSid>
+    <AccountSid>mysid</AccountSid>
+    <CallSid>CA9ae8e040497c0598481c2031a154919e</CallSid>
+    <Muted>true</Muted>
+    <StartConferenceOnEnter>true</StartConferenceOnEnter>
+    <EndConferenceOnExit>false</EndConferenceOnExit>
+    <DateCreated>Wed, 31 Dec 1969 16:33:29 -0800</DateCreated>
+    <DateUpdated>Wed, 31 Dec 1969 16:33:29 -0800</DateUpdated>
+  </Participant>
+</TwilioResponse>

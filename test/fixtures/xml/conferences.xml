@@ -1,0 +1,12 @@
+<TwilioResponse>
+  <Conferences page="0" numpages="1" pagesize="50" total="1" start="0" end="0">
+    <Conference>
+      <Sid>CFd0a50bbe038c437e87f6c82db8f37f21</Sid>
+      <AccountSid>mysid</AccountSid>
+      <FriendlyName>1234</FriendlyName>
+      <Status>2</Status>
+      <DateCreated>Thu, 03 Sep 2009 23:37:53 -0700</DateCreated>
+      <DateUpdated>Fri, 04 Sep 2009 00:35:02 -0700</DateUpdated>
+    </Conference>
+  </Conferences>
+</TwilioResponse> 

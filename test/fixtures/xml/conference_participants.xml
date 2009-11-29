@@ -1,0 +1,24 @@
+<TwilioResponse>
+  <Participants page="0" numpages="1" pagesize="50" total="2" start="0" end="1">
+    <Participant>
+      <ConferenceSid>CF9f2ead1ae43cdabeab102fa30d938378</ConferenceSid>
+      <AccountSid>mysid</AccountSid>
+      <CallSid>CA9ae8e040497c0598481c2031a154919e</CallSid>
+      <Muted>false</Muted>
+      <StartConferenceOnEnter>true</StartConferenceOnEnter>
+      <EndConferenceOnExit>false</EndConferenceOnExit>
+      <DateCreated>Wed, 31 Dec 1969 16:33:29 -0800</DateCreated>
+      <DateUpdated>Wed, 31 Dec 1969 16:33:29 -0800</DateUpdated>
+    </Participant>
+    <Participant>
+      <ConferenceSid>CF9f2ead1ae43cdabeab102fa30d938378</ConferenceSid>
+      <AccountSid>mysid</AccountSid>
+      <CallSid>CA3c3c002e06c4cdaa5367e814ade05c76</CallSid>
+      <Muted>false</Muted>
+      <StartConferenceOnEnter>true</StartConferenceOnEnter>
+      <EndConferenceOnExit>false</EndConferenceOnExit>
+      <DateCreated>Wed, 31 Dec 1969 16:33:29 -0800</DateCreated>
+      <DateUpdated>Wed, 31 Dec 1969 16:33:29 -0800</DateUpdated>
+    </Participant>
+  </Participants>
+</TwilioResponse>
