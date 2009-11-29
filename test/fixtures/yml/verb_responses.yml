@@ -71,7 +71,13 @@ dial_with_number_and_send_digits:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial><Number sendDigits="wwww1928">415-123-4567</Number></Dial></Response>  
 
 dial_multiple_numbers:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial><Number>415-123-4567</Number><Number>415-123-4568</Number><Number>415-123-4569</Number></Dial></Response> 
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial><Number>415-123-4567</Number><Number>415-123-4568</Number><Number>415-123-4569</Number></Dial></Response>
+
+dial_conference:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial><Conference>MyRoom</Conference></Dial></Response>
+
+dial_moderated_conference:
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial><Conference mute="false" startConferenceOnEnter="true" endConferenceOnExit="true">MyRoom</Conference></Dial></Response>
       
 hangup:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Hangup/></Response>  

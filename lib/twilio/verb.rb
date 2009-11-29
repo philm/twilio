@@ -215,6 +215,37 @@ module Twilio
         end
       }
     end
+    
+    # The <Dial> verb's <Conference> noun allows you to connect to a conference room.
+    # Much like how the <Number> noun allows you to connect to another phone number,
+    # the <Conference> noun allows you to connect to a named conference room and talk
+    # with the other callers who have also connected to that room.
+    #
+    # Options (see http://www.twilio.com/docs/api_reference/TwiML/conference) are passed in as a hash
+    #
+    # Examples:
+    #   verb = Twilio::Verb.new {
+    #     dial {
+    #       conference 'MyRoom', :muted => true
+    #     }
+    #   }
+    #   verb.response
+    def conference(*args)
+      conference_name = ''
+      options = {}
+      args.each do |arg|
+        case arg
+        when String
+          conference_name = arg
+        when Hash
+          options.merge!(arg)
+        else
+          raise ArgumentError, 'conference expects String or Hash argument'
+        end
+      end
+      
+      output { @xml.Conference(conference_name, options)}
+    end
         
     # The Pause (secondary) verb waits silently for a number of seconds. 
     # It is normally chained with other verbs. 
