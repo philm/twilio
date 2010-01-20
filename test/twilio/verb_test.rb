@@ -28,19 +28,19 @@ class VerbTest < Test::Unit::TestCase #:nodoc: all
     end
     
     should "say 'hi' with pause and say 'bye'" do
-      verb = Twilio::Verb.new {
-        say 'hi', :loop => 1
-        pause
-        say 'bye'
+      verb = Twilio::Verb.new { |v|
+        v.say 'hi', :loop => 1
+        v.pause
+        v.say 'bye'
       }
       assert_match %r{<Say( loop="1"| language="en"| voice="man"){3}>hi</Say><Pause></Pause><Say( loop="1"| language="en"| voice="man"){3}>bye</Say>}, verb.response
     end
     
     should "say 'hi' with 2 second pause and say 'bye'" do
-      verb = Twilio::Verb.new {
-        say 'hi'
-        pause :length => 2
-        say 'bye'
+      verb = Twilio::Verb.new { |v|
+        v.say 'hi'
+        v.pause :length => 2
+        v.say 'bye'
       }
       assert_match %r{<Say( loop="1"| language="en"| voice="man"){3}>hi</Say><Pause length="2"/><Say( loop="1"| language="en"| voice="man"){3}>bye</Say>}, verb.response
     end
@@ -92,21 +92,21 @@ class VerbTest < Test::Unit::TestCase #:nodoc: all
     end
     
     should "gather and say instructions" do
-      verb = Twilio::Verb.new {
-        gather {
-          say 'Please enter your account number followed by the pound sign'
+      verb = Twilio::Verb.new { |v|
+        v.gather {
+          v.say 'Please enter your account number followed by the pound sign'
         }
-        say "We didn't receive any input. Goodbye!"
+        v.say "We didn't receive any input. Goodbye!"
       }
       assert_match %r{<Gather><Say( loop="1"| language="en"| voice="man"){3}>Please enter your account number followed by the pound sign</Say></Gather><Say( loop="1"| language="en"| voice="man"){3}>We didn't receive any input. Goodbye!</Say>}, verb.response
     end
     
     should "gather with timeout and say instructions" do
-      verb = Twilio::Verb.new {
-        gather(:timeout => 10) {
-          say 'Please enter your account number followed by the pound sign'
+      verb = Twilio::Verb.new { |v|
+        v.gather(:timeout => 10) {
+          v.say 'Please enter your account number followed by the pound sign'
         }
-        say "We didn't receive any input. Goodbye!"
+        v.say "We didn't receive any input. Goodbye!"
       }
       assert_match %r{<Gather timeout="10"><Say( loop="1"| language="en"| voice="man"){3}>Please enter your account number followed by the pound sign</Say></Gather><Say( loop="1"| language="en"| voice="man"){3}>We didn't receive any input. Goodbye!</Say>}, verb.response
     end
@@ -174,46 +174,46 @@ class VerbTest < Test::Unit::TestCase #:nodoc: all
     end
     
     should "dial with redirect" do
-      verb = Twilio::Verb.new {
-        dial '415-123-4567'
-        redirect 'http://www.foo.com/nextInstructions'
+      verb = Twilio::Verb.new { |v|
+        v.dial '415-123-4567'
+        v.redirect 'http://www.foo.com/nextInstructions'
       }
       assert_equal verb_response(:dial_with_redirect), verb.response
     end
     
     should "dial with number and send digits" do
-      verb = Twilio::Verb.new {
-        dial {
-          number('415-123-4567', :sendDigits => 'wwww1928')
+      verb = Twilio::Verb.new { |v|
+        v.dial {
+          v.number('415-123-4567', :sendDigits => 'wwww1928')
         }
       }
       assert_equal verb_response(:dial_with_number_and_send_digits), verb.response
     end
     
     should "dial multiple numbers" do
-      verb = Twilio::Verb.new {
-        dial {
-          number '415-123-4567'
-          number '415-123-4568'
-          number '415-123-4569'
+      verb = Twilio::Verb.new { |v|
+        v.dial {
+          v.number '415-123-4567'
+          v.number '415-123-4568'
+          v.number '415-123-4569'
         }
       }
       assert_equal verb_response(:dial_multiple_numbers), verb.response
     end
     
     should "dial a conference" do
-      verb = Twilio::Verb.new {
-        dial {
-          conference 'MyRoom'
+      verb = Twilio::Verb.new { |v|
+        v.dial {
+          v.conference 'MyRoom'
         }
       }
       assert_equal verb_response(:dial_conference), verb.response
     end
     
     should "dial a muted conference" do
-      verb = Twilio::Verb.new {
-        dial {
-          conference 'MyRoom', :mute => :true
+      verb = Twilio::Verb.new { |v|
+        v.dial {
+          v.conference 'MyRoom', :mute => :true
         }
       }
       assert_equal verb_response(:dial_muted_conference), verb.response
@@ -224,9 +224,9 @@ class VerbTest < Test::Unit::TestCase #:nodoc: all
     end
     
     should "say hi and hangup" do
-      verb = Twilio::Verb.new {
-        say 'hi'
-        hangup
+      verb = Twilio::Verb.new { |v|
+        v.say 'hi'
+        v.hangup
       }
       assert_match %r{<Say( loop="1"| language="en"| voice="man"){3}>hi</Say><Hangup/>},
         verb.response

@@ -28,9 +28,9 @@ For example, in a Ruby on Rails application, you could do the following inside a
   
 and you can nest multiple verbs inside a block:
 
-  verb = Twilio::Verb.new {
-    say "The time is #{Time.now}"
-    hangup
+  verb = Twilio::Verb.new { |v|
+    v.say "The time is #{Time.now}"
+    v.hangup
   }
   verb.response
 

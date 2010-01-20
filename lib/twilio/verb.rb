@@ -9,9 +9,9 @@ module Twilio
   #
   # But if you need to chain several verbs together, just wrap them in an instance block and call the 'response' attribute:
   #
-  #   verb = Twilio::Verb.new {
-  #     dial '415-123-4567'
-  #     redirect 'http://www.foo.com/nextInstructions'
+  #   verb = Twilio::Verb.new { |v|
+  #     v.dial '415-123-4567'
+  #     v.redirect 'http://www.foo.com/nextInstructions'
   #   }
   #   verb.response
   class Verb
@@ -31,7 +31,7 @@ module Twilio
       
       if block_given?
         @chain = true
-        @response = @xml.Response { instance_eval(&block) }
+        @response = @xml.Response { block.call(self) }
       end
     end
             
@@ -131,18 +131,18 @@ module Twilio
     #
     # Gather also lets you nest the Play, Say, and Pause verbs:
     #
-    #   verb = Twilio::Verb.new {
-    #     gather(:action => '/process_gather', :method => 'GET) {
-    #       say 'Please enter your account number followed by the pound sign'
+    #   verb = Twilio::Verb.new { |v|
+    #     v.gather(:action => '/process_gather', :method => 'GET) {
+    #       v.say 'Please enter your account number followed by the pound sign'
     #     }
-    #     say "We didn't receive any input. Goodbye!"
+    #     v.say "We didn't receive any input. Goodbye!"
     #   }
     #   verb.response # represents the final xml output
     def gather(*args, &block)
       options = args.shift || {}
       output { 
         if block_given?
-          @xml.Gather(options) { block.call }
+          @xml.Gather(options) { block.call}
         else
           @xml.Gather(options)          
         end
@@ -185,11 +185,11 @@ module Twilio
     #
     # Twilio also supports an alternate form in which a Number object is nested inside Dial:
     #
-    #   verb = Twilio::Verb.new {
-    #     dial {
-    #       number '415-123-4567'
-    #       number '415-123-4568'
-    #       number '415-123-4569'
+    #   verb = Twilio::Verb.new { |v|
+    #     v.dial { |v|
+    #       v.number '415-123-4567'
+    #       v.number '415-123-4568'
+    #       v.number '415-123-4569'
     #     }
     #   }
     #   verb.response # represents the final xml output
@@ -224,9 +224,9 @@ module Twilio
     # Options (see http://www.twilio.com/docs/api_reference/TwiML/conference) are passed in as a hash
     #
     # Examples:
-    #   verb = Twilio::Verb.new {
-    #     dial {
-    #       conference 'MyRoom', :muted => true
+    #   verb = Twilio::Verb.new { |v|
+    #     v.dial {
+    #       v.conference 'MyRoom', :muted => true
     #     }
     #   }
     #   verb.response
@@ -253,10 +253,10 @@ module Twilio
     # Options (see http://www.twilio.com/docs/api_reference/TwiML/pause) are passed in as a hash
     #
     # Examples:
-    #   verb = Twilio::Verb.new {
-    #     say 'greetings'
-    #     pause :length => 2
-    #     say 'have a nice day'
+    #   verb = Twilio::Verb.new { |v|
+    #     v.say 'greetings'
+    #     v.pause :length => 2
+    #     v.say 'have a nice day'
     #   }
     #   verb.response
     def pause(*args)
@@ -270,9 +270,9 @@ module Twilio
     # Options (see http://www.twilio.com/docs/api_reference/TwiML/redirect) are passed in as a hash
     #
     # Examples:
-    #   verb = Twilio::Verb.new {
-    #     dial '415-123-4567'
-    #     redirect 'http://www.foo.com/nextInstructions'
+    #   verb = Twilio::Verb.new { |v|
+    #     v.dial '415-123-4567'
+    #     v.redirect 'http://www.foo.com/nextInstructions'
     #   }
     #   verb.response
     def redirect(*args)
@@ -301,9 +301,9 @@ module Twilio
     #
     #   If your response is chained:
     #
-    #   verb = Twilio::Verb.new {
-    #     say "The time is #{Time.now}"
-    #     hangup
+    #   verb = Twilio::Verb.new { |v|
+    #     v.say "The time is #{Time.now}"
+    #     v.hangup
     #   }
     #   verb.response
     def hangup
