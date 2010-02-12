@@ -15,28 +15,28 @@ module Twilio
   #   }
   #   verb.response
   class Verb
-    
+
     attr_reader :response
-    
+
     class << self
       def method_missing(method_id, *args) #:nodoc:
         v = Verb.new
         v.send(method_id, *args)
       end
     end
-        
+
     def initialize(&block)
       @xml = Builder::XmlMarkup.new
       @xml.instruct!
-      
+
       if block_given?
         @chain = true
         @response = @xml.Response { block.call(self) }
       end
     end
-            
-    # The Say verb converts text to speech that is read back to the caller. 
-    # Say is useful for dynamic text that is difficult to prerecord. 
+
+    # The Say verb converts text to speech that is read back to the caller.
+    # Say is useful for dynamic text that is difficult to prerecord.
     #
     # Examples:
     #   Twilio::Verb.say 'The time is 9:35 PM.'
@@ -47,7 +47,7 @@ module Twilio
     #
     #   Twilio::Verb.say 'Your PIN is 1234', :loop => 4
     #   Twilio::Verb.say 'Your PIN is 1 2 3 4', :loop => 4
-    # 
+    #
     # If you need a longer pause between each loop, instead of explicitly calling the Pause
     # verb within a block, you can set the convenient pause option:
     #
@@ -69,7 +69,7 @@ module Twilio
           raise ArgumentError, 'say expects String or Hash argument'
         end
       end
-      
+
       output {
         if options[:pause]
           loop_with_pause(options[:loop], @xml) do
@@ -80,8 +80,8 @@ module Twilio
         end
       }
     end
-    
-    # The Play verb plays an audio URL back to the caller. 
+
+    # The Play verb plays an audio URL back to the caller.
     # Examples:
     #   Twilio::Verb.play 'http://foo.com/cowbell.mp3'
     #   Twilio::Verb.play 'http://foo.com/cowbell.mp3', :loop => 3
@@ -113,13 +113,13 @@ module Twilio
           end
         else
           @xml.Play(options[:audio_url], :loop => options[:loop])
-        end          
+        end
       }
     end
-    
-    # The Gather verb collects digits entered by a caller into their telephone keypad. 
-    # When the caller is done entering data, Twilio submits that data to a provided URL, 
-    # as either a HTTP GET or POST request, just like a web browser submits data from an HTML form. 
+
+    # The Gather verb collects digits entered by a caller into their telephone keypad.
+    # When the caller is done entering data, Twilio submits that data to a provided URL,
+    # as either a HTTP GET or POST request, just like a web browser submits data from an HTML form.
     #
     # Options (see http://www.twilio.com/docs/api_reference/TwiML/gather) are passed in as a hash
     #
@@ -140,18 +140,18 @@ module Twilio
     #   verb.response # represents the final xml output
     def gather(*args, &block)
       options = args.shift || {}
-      output { 
+      output {
         if block_given?
           @xml.Gather(options) { block.call}
         else
-          @xml.Gather(options)          
+          @xml.Gather(options)
         end
       }
     end
-    
+
     #play, say, pause
-    
-    # The Record verb records the caller's voice and returns a URL that links to a file 
+
+    # The Record verb records the caller's voice and returns a URL that links to a file
     # containing the audio recording.
     #
     # Options (see http://www.twilio.com/docs/api_reference/TwiML/record) are passed in as a hash
@@ -165,15 +165,15 @@ module Twilio
       options = args.shift
       output { @xml.Record(options) }
     end
-    
-    # The Dial verb connects the current caller to an another phone. If the called party picks up, 
-    # the two parties are connected and can communicate until one hangs up. If the called party does 
+
+    # The Dial verb connects the current caller to an another phone. If the called party picks up,
+    # the two parties are connected and can communicate until one hangs up. If the called party does
     # not pick up, if a busy signal is received, or the number doesn't exist, the dial verb will finish.
     #
-    # If an action verb is provided, Twilio will submit the outcome of the call attempt to the action URL. 
+    # If an action verb is provided, Twilio will submit the outcome of the call attempt to the action URL.
     # If no action is provided, Dial will fall through to the next verb in the document.
     #
-    # Note: this is different than the behavior of Record and Gather. Dial does not submit back to the 
+    # Note: this is different than the behavior of Record and Gather. Dial does not submit back to the
     # current document URL if no action is provided.
     #
     # Options (see http://www.twilio.com/docs/api_reference/TwiML/dial) are passed in as a hash
@@ -206,16 +206,16 @@ module Twilio
           raise ArgumentError, 'dial expects String or Hash argument'
         end
       end
-      
-      output { 
+
+      output {
         if block_given?
           @xml.Dial(options) { block.call }
         else
-          @xml.Dial(number_to_dial, options)           
+          @xml.Dial(number_to_dial, options)
         end
       }
     end
-    
+
     # The <Dial> verb's <Conference> noun allows you to connect to a conference room.
     # Much like how the <Number> noun allows you to connect to another phone number,
     # the <Conference> noun allows you to connect to a named conference room and talk
@@ -243,12 +243,12 @@ module Twilio
           raise ArgumentError, 'conference expects String or Hash argument'
         end
       end
-      
+
       output { @xml.Conference(conference_name, options)}
     end
-        
-    # The Pause (secondary) verb waits silently for a number of seconds. 
-    # It is normally chained with other verbs. 
+
+    # The Pause (secondary) verb waits silently for a number of seconds.
+    # It is normally chained with other verbs.
     #
     # Options (see http://www.twilio.com/docs/api_reference/TwiML/pause) are passed in as a hash
     #
@@ -263,7 +263,7 @@ module Twilio
       options = args.shift
       output { @xml.Pause(options) }
     end
-    
+
     # The Redirect (secondary) verb transfers control to a different URL.
     # It is normally chained with other verbs.
     #
@@ -288,12 +288,38 @@ module Twilio
           raise ArgumentError, 'dial expects String or Hash argument'
         end
       end
-      
+
       output { @xml.Redirect(redirect_to_url, options) }
     end
-    
-    # The Hangup (secondary) verb ends the call. 
-    # 
+
+    # The <Sms> verb sends a SMS message to a phone number.
+    #
+    # Options (see http://www.twilio.com/docs/api/2008-08-01/twiml/sms/sms) ars passed in as a hash
+    #
+    # Examples:
+    #   verb = Twilio::Verb.new { |v|
+    #     v.sms 'Meet at South Street'
+    #   }
+    #
+    def sms(*args)
+      message = ''
+      options = {}
+      args.each do |arg|
+        case arg
+        when String
+          message = arg
+        when Hash
+          options.merge!(arg)
+        else
+          raise ArgumentError, 'sms expects STring or Hash argument'
+        end
+      end
+
+      output { @xml.Sms(message, options) }
+    end
+
+    # The Hangup (secondary) verb ends the call.
+    #
     # Examples:
     #   If your response is only a hangup:
     #
@@ -309,7 +335,7 @@ module Twilio
     def hangup
       output { @xml.Hangup }
     end
-    
+
     # The Number element specifies a phone number. The number element has two optional attributes: sendDigits and url.
     # Number elements can only be nested in Dial verbs
     def number(*args)
@@ -325,18 +351,18 @@ module Twilio
           raise ArgumentError, 'dial expects String or Hash argument'
         end
       end
-      
+
       output { @xml.Number(number_to_dial, options) }
     end
-          
+
     private
-    
+
       def output
         @chain ? yield : @xml.Response { yield }
-      end 
-          
+      end
+
       def loop_with_pause(loop_count, xml, &verb_action)
-        last_iteration = loop_count-1                               
+        last_iteration = loop_count-1
         loop_count.times do |i|
           yield verb_action
           xml.Pause unless i == last_iteration

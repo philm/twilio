@@ -1,0 +1,29 @@
+<TwilioResponse>
+    <SMSMessages page="0" numpages="2" pagesize="50" total="69" start="0"
+end="49">
+        <SMSMessage>
+            <Sid>SM872fb94e3b358913777cdb313f25b46f</Sid>
+            <DateCreated>Sun, 04 Oct 2009 03:48:08 -0700</DateCreated>
+            <DateUpdated>Sun, 04 Oct 2009 03:48:10 -0700</DateUpdated>
+            <DateSent>Sun, 04 Oct 2009 03:48:10 -0700</DateSent>
+            <AccountSid>AC5ea872f6da5a21de157d80997a64bd33</AccountSid>
+            <To>4158675309</To>
+            <From>6505551212</From>
+            <Body>Hi there Jenny! Want to grab dinner?</Body>
+            <Status>sent</Status>
+            <Flags>2</Flags>
+        </SMSMessage>
+        <SMSMessage>
+            <Sid>SM47dfd824add482e1fee25ee3ce216113</Sid>
+            <DateCreated>Sun, 04 Oct 2009 03:48:07 -0700</DateCreated>
+            <DateUpdated>Sun, 04 Oct 2009 03:48:07 -0700</DateUpdated>
+            <DateSent>Sun, 04 Oct 2009 03:48:07 -0700</DateSent>
+            <AccountSid>AC5ea872f6da5a21de157d80997a64bd33</AccountSid>
+            <To>6505551212</To>
+            <From>4158675309</From>
+            <Body>The judge said you can't text me anymore.</Body>
+            <Status>sent</Status>
+            <Flags>1</Flags>
+        </SMSMessage>
+    </SMSMessages>
+</TwilioResponse>

@@ -1,0 +1,14 @@
+<TwilioResponse>
+    <SMSMessage>
+        <Sid>SM872fb94e3b358913777cdb313f25b46f</Sid>
+        <DateCreated>Sun, 04 Oct 2009 03:48:08 -0700</DateCreated>
+        <DateUpdated>Sun, 04 Oct 2009 03:48:10 -0700</DateUpdated>
+        <DateSent>Sun, 04 Oct 2009 03:48:10 -0700</DateSent>
+        <AccountSid>AC5ea872f6da5a21de157d80997a64bd33</AccountSid>
+        <To>4158675309</To>
+        <From>6505551212</From>
+        <Body>Hi there Jenny! Why didn't you call me back?</Body>
+        <Status>sent</Status>
+        <Flags>2</Flags>
+    </SMSMessage>
+</TwilioResponse>
