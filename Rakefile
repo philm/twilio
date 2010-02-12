@@ -5,9 +5,10 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "twilio"
     gem.summary = %Q{Twilio API Client}
+    gem.description = %Q{Twilio API wrapper}
     gem.email = "github@webficient.com"
     gem.homepage = "http://github.com/webficient/twilio"
-    gem.authors = ["Phil Misiowiec", "Alex K Wolfe"]
+    gem.authors = ["Phil Misiowiec", "Jonathan Rudenberg", "Alex K Wolfe", "Kyle Daigle"]
     gem.add_dependency 'builder', '>= 2.1.2'
     gem.add_dependency 'httparty', '>= 0.4.3'
   end

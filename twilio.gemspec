@@ -5,11 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{twilio}
-  s.version = "2.6.0"
+  s.version = "2.7.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Phil Misiowiec", "Alex K Wolfe"]
-  s.date = %q{2010-02-11}
+  s.authors = ["Phil Misiowiec", "Jonathan Rudenberg", "Alex K Wolfe", "Kyle Daigle"]
+  s.date = %q{2010-02-12}
+  s.description = %q{Twilio API wrapper}
   s.email = %q{github@webficient.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -31,6 +32,7 @@ Gem::Specification.new do |s|
      "lib/twilio/notification.rb",
      "lib/twilio/outgoing_caller_id.rb",
      "lib/twilio/recording.rb",
+     "lib/twilio/sms.rb",
      "lib/twilio/toll_free_phone_number.rb",
      "lib/twilio/twilio_object.rb",
      "lib/twilio/verb.rb",
@@ -54,6 +56,9 @@ Gem::Specification.new do |s|
      "test/fixtures/xml/outgoing_caller_ids.xml",
      "test/fixtures/xml/recording.xml",
      "test/fixtures/xml/recordings.xml",
+     "test/fixtures/xml/sms.xml",
+     "test/fixtures/xml/sms_messages.xml",
+     "test/fixtures/xml/sms_new.xml",
      "test/fixtures/xml/transcription.xml",
      "test/fixtures/xml/transcriptions.xml",
      "test/fixtures/yml/verb_responses.yml",
@@ -67,6 +72,7 @@ Gem::Specification.new do |s|
      "test/twilio/notification_test.rb",
      "test/twilio/outgoing_caller_id_test.rb",
      "test/twilio/recording_test.rb",
+     "test/twilio/sms_test.rb",
      "test/twilio/toll_free_phone_number_test.rb",
      "test/twilio/verb_test.rb",
      "twilio.gemspec"
@@ -87,6 +93,7 @@ Gem::Specification.new do |s|
      "test/twilio/notification_test.rb",
      "test/twilio/outgoing_caller_id_test.rb",
      "test/twilio/recording_test.rb",
+     "test/twilio/sms_test.rb",
      "test/twilio/toll_free_phone_number_test.rb",
      "test/twilio/verb_test.rb"
   ]
