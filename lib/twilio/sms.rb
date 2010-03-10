@@ -4,9 +4,10 @@ module Twilio
   class Sms < TwilioObject
     #  Example:
     #  Twilio.connect('my_twilio_sid', 'my_auth_token')
-    #  Twilio::Sms.message(CALLER_ID, user_number, 'This is my simple SMS message')
-    def message(from, to, body)
-      Twilio.post("/SMS/Messages", :body => {:From => from, :To => to, :Body => body})
+    #  Twilio::Sms.message(CALLER_ID, user_number, 'This is my simple SMS message', 'http://example.com/sms_callback')
+    def message(from, to, body, callback_url=nil)
+      callback = callback_url ? {:StatusCallback => callback_url} : {}
+      Twilio.post("/SMS/Messages", :body => {:From => from, :To => to, :Body => body}.merge(callback))
     end
 
     def list(optional = {})
