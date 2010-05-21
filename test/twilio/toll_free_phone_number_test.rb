@@ -15,6 +15,13 @@ class TollFreePhoneNumberTest < Test::Unit::TestCase #:nodoc: all
       assert_equal stub_response(:post, :incoming_phone_number, :resource => 'IncomingPhoneNumbers/TollFree'),
         Twilio::TollFreePhoneNumber.create('http://test.local/call_handler')
     end
+
+    should "be deleted" do
+      stub_response(:delete, :incoming_phone_number, { :resource => 'IncomingPhoneNumbers/PNe536dfda7c6184afab78d980cb8cdf43', 
+                                              :status   => [ 204, "HTTPNoContent" ] })
+      assert Twilio::TollFreePhoneNumber.delete('PNe536dfda7c6184afab78d980cb8cdf43')
+    end
+
     
     context "using deprecated API" do
       setup do

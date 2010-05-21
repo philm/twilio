@@ -17,5 +17,10 @@ module Twilio
     def list
       Twilio.get("/IncomingPhoneNumbers/TollFree")
     end
+    
+    def delete(phone_number_sid)
+      Twilio.delete("/IncomingPhoneNumbers/#{phone_number_sid}")
+    end
+    
   end
 end
