@@ -76,7 +76,6 @@ Gem::Specification.new do |s|
      "test/twilio/sms_test.rb",
      "test/twilio/toll_free_phone_number_test.rb",
      "test/twilio/verb_test.rb",
-     "twilio-2.7.0.gem",
      "twilio.gemspec"
   ]
   s.homepage = %q{http://github.com/webficient/twilio}
