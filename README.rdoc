@@ -48,4 +48,5 @@ Copyright (c) 2009 Phil Misiowiec, Webficient LLC. See LICENSE for details.
 
 Kyle Daigle
 Jonathan Rudenberg
+Jeff Wigal
 Alex K Wolfe
