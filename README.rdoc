@@ -42,7 +42,7 @@ If you need to tweak the source code, clone this repository and do a rake build 
 
 == Copyright
 
-Copyright (c) 2009 Phil Misiowiec, Webficient LLC. See LICENSE for details.
+Copyright (c) 2009-2010 Phil Misiowiec, Webficient LLC. See LICENSE for details.
 
 == Contributors
 

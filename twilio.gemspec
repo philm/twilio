@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{twilio}
-  s.version = "2.7.0"
+  s.version = "2.8.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Phil Misiowiec", "Jonathan Rudenberg", "Alex K Wolfe", "Kyle Daigle"]
-  s.date = %q{2010-02-12}
+  s.authors = ["Phil Misiowiec", "Jonathan Rudenberg", "Alex K Wolfe", "Kyle Daigle", "Jeff Wigal"]
+  s.date = %q{2010-05-25}
   s.description = %q{Twilio API wrapper}
   s.email = %q{github@webficient.com}
   s.extra_rdoc_files = [
@@ -59,6 +59,7 @@ Gem::Specification.new do |s|
      "test/fixtures/xml/sms.xml",
      "test/fixtures/xml/sms_messages.xml",
      "test/fixtures/xml/sms_new.xml",
+     "test/fixtures/xml/sms_new_with_callback.xml",
      "test/fixtures/xml/transcription.xml",
      "test/fixtures/xml/transcriptions.xml",
      "test/fixtures/yml/verb_responses.yml",
@@ -75,12 +76,13 @@ Gem::Specification.new do |s|
      "test/twilio/sms_test.rb",
      "test/twilio/toll_free_phone_number_test.rb",
      "test/twilio/verb_test.rb",
+     "twilio-2.7.0.gem",
      "twilio.gemspec"
   ]
   s.homepage = %q{http://github.com/webficient/twilio}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Twilio API Client}
   s.test_files = [
     "test/test_helper.rb",
