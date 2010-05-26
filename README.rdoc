@@ -4,7 +4,7 @@ The Twilio gem provides two major pieces of functionality: (1) a Ruby wrapper fo
 
 See http://www.twilio.com/docs/index for Twilio's API documentation.
 
-For an overview of the Twilio Gem and a sample use case, check out http://www.webficient.com/2009/06/22/hello-this-is-your-rails-app-calling-you.
+For an overview of the Twilio Gem and a sample use case, check out our cached blog entry: http://webcache.googleusercontent.com/search?q=cache:AejgwBra3fMJ:www.webficient.com/2009/06/22/hello-this-is-your-rails-app-calling-you+site:http://www.webficient.com/2009/06/22/hello-this-is-your-rails-app-calling-you&hl=en&gl=us&strip=1
 
 == Calling the Twilio REST API
 
