@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class OutgoingCallerIdTest < Test::Unit::TestCase #:nodoc: all
   context "An outgoing caller id" do

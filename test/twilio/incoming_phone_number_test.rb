@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class IncomingPhoneNumberTest < Test::Unit::TestCase #:nodoc: all
   context "An incoming phone number" do
