@@ -1,6 +1,6 @@
 module Twilio
   include HTTParty
-  TWILIO_URL = "https://api.twilio.com/2008-08-01/Accounts"
+  TWILIO_URL = "https://api.twilio.com/2010-04-01/Accounts"
     
   # The connect method caches your Twilio account id and authentication token
   # Example:

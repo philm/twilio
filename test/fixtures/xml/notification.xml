@@ -12,7 +12,7 @@
 		<MessageDate>Thu, 03 Apr 2008 04:36:32 -0400</MessageDate>
 		<RequestURL>http://yourserver.com/handleCall.php</RequestURL>
 		<RequestMethod>POST</RequestMethod>
-		<RequestVariables>Caller=4158675309&Called=4155551212...</RequestVariables>
+		<RequestVariables>From=4158675309&To=4155551212...</RequestVariables>
 		<ResponseHeaders>Content-Length: 500</ResponseHeaders>
 		<ResponseBody>&lt;h1&gt;Error parsing PHP script&lt;/h1&gt;</ResponseBody>
 	</Notification> 

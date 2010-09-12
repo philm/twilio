@@ -6,8 +6,8 @@
 			<DateUpdated>Sat, 07 Feb 2009 13:15:19 -0800</DateUpdated>
 			<CallSegmentSid/>  
 			<AccountSid>mysid</AccountSid>  
-			<Called>4159633717</Called>  
-			<Caller>4156767925</Caller>  
+			<To>4159633717</To>  
+			<From>4156767925</From>  
 			<PhoneNumberSid>PN01234567890123456789012345678900</PhoneNumberSid>  
 			<Status>2</Status>  
 			<StartTime>Thu, 03 Apr 2008 04:36:33 -0400</StartTime>  
@@ -22,8 +22,8 @@
 			<DateUpdated>Sat, 07 Feb 2009 13:15:19 -0800</DateUpdated>
 			<CallSegmentSid/>  
 			<AccountSid>mysid</AccountSid>  
-			<Called>2064287985</Called>  
-			<Caller>4156767925</Caller>  
+			<To>2064287985</To>  
+			<From>4156767925</From>  
 			<PhoneNumberSid>PNd59c2ba27ef48264773edb90476d1674</PhoneNumberSid>  
 			<Status>2</Status>  
 			<StartTime>Thu, 03 Apr 2008 01:37:05 -0400</StartTime>  

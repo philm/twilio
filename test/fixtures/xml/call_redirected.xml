@@ -3,8 +3,8 @@
     <Sid>CA42ed11f93dc08b952027ffbc406d0868</Sid> 
     <CallSegmentSid/> 
     <AccountSid>AC309475e5fede1b49e100272a8640f438</AccountSid> 
-    <Called>4155551234</Called> 
-    <Caller>4158675309</Caller> 
+    <To>4155551234</To> 
+    <From>4158675309</From> 
     <PhoneNumberSid>PN01234567890123456789012345678900</PhoneNumberSid> 
     <Status>1</Status> 
     <StartTime>Thu, 03 Apr 2008 04:36:33 -0400</StartTime> 

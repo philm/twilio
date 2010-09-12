@@ -7,9 +7,9 @@ module Twilio
   class TollFreePhoneNumber < TwilioObject
     def create(url, area_code = nil, method = 'POST', friendly_name = nil)
       Twilio.post("/IncomingPhoneNumbers/TollFree", :body => {
-        :Url => url, 
+        :VoiceUrl => url, 
         :AreaCode => area_code, 
-        :Method => method,
+        :VoiceMethod => method,
         :FriendlyName => friendly_name 
       })
     end

@@ -6,8 +6,8 @@ module Twilio
     #  Example:
     #  Twilio.connect('my_twilio_sid', 'my_auth_token')
     #  Twilio::Call.make(CALLER_ID, user_number, 'http://myapp.com/twilio_response_handler')
-    def make(caller, called, url, optional = {})
-      Twilio.post("/Calls", :body => {:Caller => caller, :Called => called, :Url => url}.merge(optional))
+    def make(from, to, url, optional = {})
+      Twilio.post("/Calls", :body => {:From => from, :To => to, :Url => url}.merge(optional))
     end
 
     def list(optional = {})

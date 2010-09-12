@@ -24,7 +24,7 @@ def stub_response(verb, fixture_name, options = {}) #:nodoc:
 end
 
 def twilio_url(url=nil) #:nodoc:
-  "https://mysid:mytoken@api.twilio.com:443/2008-08-01/Accounts/mysid#{'/' + url if url}"
+  "https://mysid:mytoken@api.twilio.com:443/2010-04-01/Accounts/mysid#{'/' + url if url}"
 end
 
 def verb_response(verb) #:nodoc:

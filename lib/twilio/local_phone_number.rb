@@ -7,9 +7,9 @@ module Twilio
   class LocalPhoneNumber < TwilioObject
     def create(url, area_code = nil, method = 'POST', friendly_name = nil, options = {})
       Twilio.post("/IncomingPhoneNumbers/Local", :body => {
-        :Url => url, 
+        :VoiceUrl => url, 
         :AreaCode => area_code, 
-        :Method => method,
+        :VoiceMethod => method,
         :FriendlyName => friendly_name 
       }.merge(options))
     end
