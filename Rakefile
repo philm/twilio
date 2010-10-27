@@ -8,7 +8,7 @@ begin
     gem.description = %Q{Twilio API wrapper}
     gem.email = "github@webficient.com"
     gem.homepage = "http://github.com/webficient/twilio"
-    gem.authors = ["Phil Misiowiec", "Jonathan Rudenberg", "Alex K Wolfe", "Kyle Daigle", "Jeff Wigal"]
+    gem.authors = ["Phil Misiowiec", "Jonathan Rudenberg", "Alex K Wolfe", "Kyle Daigle", "Jeff Wigal", "Yuri Gadow"]
     gem.add_dependency 'builder', '>= 2.1.2'
     gem.add_dependency 'httparty', '>= 0.4.3'
   end

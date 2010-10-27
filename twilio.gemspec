@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{twilio}
-  s.version = "2.8.0"
+  s.version = "2.9.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Phil Misiowiec", "Jonathan Rudenberg", "Alex K Wolfe", "Kyle Daigle", "Jeff Wigal"]
-  s.date = %q{2010-05-25}
+  s.authors = ["Phil Misiowiec", "Jonathan Rudenberg", "Alex K Wolfe", "Kyle Daigle", "Jeff Wigal", "Yuri Gadow"]
+  s.date = %q{2010-10-27}
   s.description = %q{Twilio API wrapper}
   s.email = %q{github@webficient.com}
   s.extra_rdoc_files = [
