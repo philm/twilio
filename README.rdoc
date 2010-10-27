@@ -46,7 +46,4 @@ Copyright (c) 2009-2010 Phil Misiowiec, Webficient LLC. See LICENSE for details.
 
 == Contributors
 
-Kyle Daigle
-Jonathan Rudenberg
-Jeff Wigal
-Alex K Wolfe
+Kyle Daigle, Yuri Gadow, Jonathan Rudenberg, Jeff Wigal, Alex K Wolfe
