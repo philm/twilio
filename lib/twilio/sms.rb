@@ -10,8 +10,8 @@ module Twilio
       Twilio.post("/SMS/Messages", :body => {:From => from, :To => to, :Body => body}.merge(callback))
     end
 
-    def list(optional = {})
-      Twilio.get("/SMS/Messages", :query => optional)
+    def list(opts = {})
+      Twilio.get("/SMS/Messages", :query => (opts.empty? ? nil : opts))
     end
 
     def get(sms_message_sid)

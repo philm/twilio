@@ -14,24 +14,17 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "twilio"
 
-  if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
-    s.specification_version = 3
-
-    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<builder>, [">= 2.1.2"])
-      s.add_runtime_dependency(%q<httparty>, [">= 0.4.3"])
-    else
-      s.add_dependency(%q<builder>, [">= 2.1.2"])
-      s.add_dependency(%q<httparty>, [">= 0.4.3"])
-    end
-  else
-    s.add_dependency(%q<builder>, [">= 2.1.2"])
-    s.add_dependency(%q<httparty>, [">= 0.4.3"])
-  end
-
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
+  
+  s.add_dependency "builder", "~> 3.0"
+  s.add_dependency "httparty", "~> 0.7.4"
+  
+  { 
+    'rake'    => '~> 0.8.7',
+    'rspec'   => '~> 2.5.0',
+    'webmock' => '~> 1.6.2'
+  }.each { |l, v| s. add_development_dependency l, v }
 end

@@ -34,14 +34,26 @@ and you can nest multiple verbs inside a block:
 
 == Installation
 
-  sudo gem install twilio -s http://gemcutter.org
+  gem install twilio
   
-If you need to tweak the source code, clone this repository and do a rake build and rake install.
+== Contributing
+
+1. Run 'bundle' from the command line to install dependencies
+2. Write test(s) for your patch
+3. Submit a pull request
+
+Note: don't require 'rubygems' in any file (http://www.rubyinside.com/why-using-require-rubygems-is-wrong-1478.html)
 
 == Copyright
 
-Copyright (c) 2009-2010 Phil Misiowiec, Webficient LLC. See LICENSE for details.
+Copyright (c) 2009-2011 Phil Misiowiec, Webficient LLC. See LICENSE for details.
 
 == Contributors
 
-Kyle Daigle, Yuri Gadow, Jonathan Rudenberg, Jeff Wigal, Alex K Wolfe
+* Kyle Daigle
+* Yuri Gadow
+* Kyle Humberto
+* Jonathan Rudenberg
+* Mark Turner
+* Jeff Wigal
+* Alex K Wolfe

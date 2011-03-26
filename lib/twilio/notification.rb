@@ -5,8 +5,8 @@ module Twilio
   #   Twilio.connect('my_twilio_sid', 'my_auth_token')
   #   Twilio::Notification.list
   class Notification < TwilioObject
-    def list(optional = {})
-      Twilio.get('/Notifications', :query => optional)
+    def list(opts = {})
+      Twilio.get('/Notifications', :query => (opts.empty? ? nil : opts))
     end
     
     def get(notification_sid)

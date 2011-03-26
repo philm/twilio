@@ -5,16 +5,17 @@ module Twilio
   #   Twilio.connect('my_twilio_sid', 'my_auth_token')
   #   Twilio::OutgoingCallerId.list
   class OutgoingCallerId < TwilioObject
-    def create(phone_number, friendly_name = phone_number, call_delay = 0)
+    def create(phone_number, friendly_name = phone_number, call_delay = 0, extension = nil)
       Twilio.post("/OutgoingCallerIds", :body => {
         :PhoneNumber => phone_number, 
         :FriendlyName => friendly_name, 
-        :CallDelay => call_delay 
+        :CallDelay => call_delay,
+        :Extension => extension
       })
     end
 
-    def list(optional = {})
-      Twilio.get("/OutgoingCallerIds", :query => optional) 
+    def list(opts = {})
+      Twilio.get("/OutgoingCallerIds", :query => (opts.empty? ? nil : opts)) 
     end
         
     def get(callerid_sid)

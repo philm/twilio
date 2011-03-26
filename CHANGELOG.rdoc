@@ -1,0 +1,27 @@
+= Twilio Gem Changelog
+
+== 3.0
+
+* SSL validation (thanks Kyle Humberto)
+* Available phone numbers search support (thanks Mark Turner)
+* Deprecated Twilio::Connection method has been removed, use Twilio.connect(...)
+* LocalPhoneNumber and TollFreeNumber have been removed to reflect API changes
+* New phone numbers are now provisioned via the IncomingPhoneNumber class
+* Several classes improved to avoid adding a stray "?" when no params were set
+* Compatibility with 1.9.2 (and tested on 1.8.7 MRI and REE)
+* Now uses Bundler, Rspec 2, and WebMock
+
+== 2.9
+
+* Compatibility with Twilio's 2010-04-01 API publish
+
+== 2.8
+
+* SMS callback URLs
+* Ability to delete phone numbers
+
+== 2.7
+
+* SMS functionality
+
+For earlier versions, see https://github.com/webficient/twilio/commits/master

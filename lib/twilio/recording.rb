@@ -5,8 +5,8 @@ module Twilio
   #   Twilio.connect('my_twilio_sid', 'my_auth_token')
   #   Twilio::Recording.list
   class Recording < TwilioObject    
-    def list(optional = {})
-      Twilio.get("/Recordings", :query => optional)  
+    def list(opts = {})
+      Twilio.get("/Recordings", :query => (opts.empty? ? nil : opts))  
     end
     
     def get(recording_sid)

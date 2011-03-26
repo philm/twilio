@@ -4,20 +4,20 @@ module Twilio
     # a Conference Instance Resource is created to represent the conference room
     # and a Participant Instance Resource is created to represent the caller who joined.
   class Conference < TwilioObject
-    def list(optional = {})
-      Twilio.get("/Conferences", :query => optional)  
+    def list(opts = {})
+      Twilio.get("/Conferences", :query => (opts.empty? ? nil : opts))
     end
     
     def get(conference_sid)
-      Twilio.get("/Conferences/#{conference_sid}")  
+      Twilio.get("/Conferences/#{conference_sid}")
     end
     
-    def participants(conference_sid, optional = {})
-      Twilio.get("/Conferences/#{conference_sid}/Participants", :query => optional) 
+    def participants(conference_sid, opts = {})
+      Twilio.get("/Conferences/#{conference_sid}/Participants", :query => (opts.empty? ? nil : opts))
     end
     
     def participant(conference_sid, call_sid)
-      Twilio.get("/Conferences/#{conference_sid}/Participants/#{call_sid}") 
+      Twilio.get("/Conferences/#{conference_sid}/Participants/#{call_sid}")
     end
     
     def mute_participant(conference_sid, call_sid)

@@ -11,19 +11,21 @@ module Twilio
     # numbers. 
     def search(opts={})
       iso_country_code = opts[:iso_country_code] || 'US'
-      resource = opts[:resource]
-      Twilio.get("/AvailablePhoneNumbers/#{iso_country_code}/#{resource}", 
-        :query => {
-          :AreaCode => opts[:area_code],
-          :InPostalCode => opts[:postal_code],
-          :InRegion => opts[:in_region],
-          :Contains => opts[:contains],
-          :NearLatLong => opts[:near_lat_long],
-          :NearNumber => opts[:near_number],
-          :InLata => opts[:in_lata],
-          :InRateCenter => opts[:in_rate_center],
-          :Distance => opts[:distance]
-        }.reject {|k,v| v == nil})
+      resource = opts.delete(:resource)
+
+      params = {
+        :AreaCode => opts[:area_code],
+        :InPostalCode => opts[:postal_code],
+        :InRegion => opts[:in_region],
+        :Contains => opts[:contains],
+        :NearLatLong => opts[:near_lat_long],
+        :NearNumber => opts[:near_number],
+        :InLata => opts[:in_lata],
+        :InRateCenter => opts[:in_rate_center],
+        :Distance => opts[:distance]
+      }.reject {|k,v| v == nil} unless opts.empty?
+      
+      Twilio.get("/AvailablePhoneNumbers/#{iso_country_code}/#{resource}", :query => params)
     end
 
     # The search_local method searches for numbers in local areas (i.e. state, zip, etc..)
