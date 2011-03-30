@@ -1,5 +1,9 @@
 = Twilio Gem Changelog
 
+== 3.0.1
+
+* Bumped down Builder version requirement for Rails compat
+
 == 3.0
 
 * SSL validation (thanks Kyle Humberto)
