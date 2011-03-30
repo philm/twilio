@@ -18,11 +18,11 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
-  
-  s.add_dependency "builder", "~> 3.0"
+
+  s.add_dependency "builder", "~> 2.1.2"
   s.add_dependency "httparty", "~> 0.7.4"
-  
-  { 
+
+  {
     'rake'    => '~> 0.8.7',
     'rspec'   => '~> 2.5.0',
     'webmock' => '~> 1.6.2'
