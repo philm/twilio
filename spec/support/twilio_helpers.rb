@@ -9,13 +9,15 @@ module TwilioHelpers #:nodoc:
     fake_response = fixture(fixture_name)         
     url = twilio_url(resource)
     
+    # Must set header content-type so HTTParty properly parses response
     if request_options
-      stub_request(http_method, url).with(request_options).to_return(:body => fake_response)
+      stub_request(http_method, url).with(request_options).to_return(:body => fake_response, :headers => {:content_type => 'application/xml'})
     else
-      stub_request(http_method, url).to_return(:body => fake_response)
+      stub_request(http_method, url).to_return(:body => fake_response, :headers => {:content_type => 'application/xml'})
     end
     
-    return fake_response, url
+    # Return a parsed response, so it agrees w/ what is retturned from HTTParty
+    return HTTParty::Parser.call(fake_response, :xml), url
   end
     
   def stub_get(fixture, *opts)

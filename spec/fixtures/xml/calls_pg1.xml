@@ -1,0 +1,36 @@
+<TwilioResponse>  
+  <Calls page="1" numpages="2" pagesize="2" total="4" start="2" end="3">  
+    <Call>  
+      <Sid>CA751e8fa0a0105cf26a0d7a9775fb4bfc</Sid>  
+      <DateCreated>Sat, 07 Feb 2009 14:15:19 -0800</DateCreated>
+      <DateUpdated>Sat, 07 Feb 2009 14:15:19 -0800</DateUpdated>
+      <CallSegmentSid/>  
+      <AccountSid>mysid</AccountSid>  
+      <To>2064287985</To>  
+      <From>4156767975</From>  
+      <PhoneNumberSid>PNd59c2ba27ef48264773edb90476d1700</PhoneNumberSid>  
+      <Status>2</Status>  
+      <StartTime>Thu, 03 Apr 2008 02:37:05 -0400</StartTime>  
+      <EndTime>Thu, 03 Apr 2008 02:37:45 -0400</EndTime>  
+      <Duration>40</Duration>  
+      <Price>0.8</Price>  
+      <Flags>1</Flags>  
+    </Call>  
+     <Call>  
+      <Sid>CA751e8fa0a0105cf26a0d7a9775fb4bfd</Sid>  
+      <DateCreated>Sat, 07 Feb 2009 15:15:19 -0800</DateCreated>
+      <DateUpdated>Sat, 07 Feb 2009 15:15:19 -0800</DateUpdated>
+      <CallSegmentSid/>  
+      <AccountSid>mysid</AccountSid>  
+      <To>2064287985</To>  
+      <From>4156767975</From>  
+      <PhoneNumberSid>PNd59c2ba27ef48264773edb90476d1674</PhoneNumberSid>  
+      <Status>2</Status>  
+      <StartTime>Thu, 03 Apr 2008 03:37:05 -0400</StartTime>  
+      <EndTime>Thu, 03 Apr 2008 03:37:50 -0400</EndTime>  
+      <Duration>45</Duration>  
+      <Price>0.9</Price>  
+      <Flags>1</Flags>  
+    </Call>  
+   </Calls> 
+</TwilioResponse>

@@ -32,6 +32,10 @@ and you can nest multiple verbs inside a block:
   }
   verb.response
 
+== Statistics API
+
+This version adds a non-standard meta-api to provide simple roll-up statistics for current account usage
+
 == Installation
 
   gem install twilio
@@ -57,3 +61,4 @@ Copyright (c) 2009-2011 Phil Misiowiec, Webficient LLC. See LICENSE for details.
 * Mark Turner
 * Jeff Wigal
 * Alex K Wolfe
+* Marcus Mateus (http://github.com/marcusmateus)

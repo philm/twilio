@@ -35,6 +35,7 @@ require 'twilio/notification'
 require 'twilio/outgoing_caller_id'
 require 'twilio/recording'
 require 'twilio/sms'
+require 'twilio/stats'
 require 'twilio/verb'
 
 module Twilio  
