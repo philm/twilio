@@ -51,4 +51,11 @@ module Twilio
     self.basic_auth account_sid, auth_token
     self.default_options[:ssl_ca_path] ||= SSL_CA_PATH unless self.default_options[:ssl_ca_file]
   end  
+
+  # Quick & dirty way to get proper encoding for 
+  # 'StartTime>', 'StartTime<', etc. query params working
+  query_string_normalizer proc { |query|
+    URI.encode(query.to_params)
+  }
+
 end
