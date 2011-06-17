@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+require 'irb'
+ARGV.clear
+$: << File.expand_path('../../lib', __FILE__)
+require 'twilio'
+IRB.start
