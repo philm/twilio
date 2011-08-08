@@ -357,6 +357,7 @@ module Twilio
 
 
     # The Reject verb refuse the call
+    # (see http://www.twilio.com/docs/api/twiml/reject)
     # Examples:
     #
     #   Twilio::Verb.reject
