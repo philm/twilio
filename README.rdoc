@@ -1,3 +1,7 @@
+= Slayer's modifications:
+
+* added Reject verb
+
 = Twilio Gem
 
 The Twilio gem provides two major pieces of functionality: (1) a Ruby wrapper for the Twilio REST API and (2) response handlers based on the Twilio Markup XML (TwiML).
