@@ -21,24 +21,29 @@ module Twilio
             stats[from_phone_num] = {}
             stats[from_phone_num][:count] = 0
             stats[from_phone_num][:duration] = 0
+            stats[from_phone_num][:minutes_charged] = 0
             stats[from_phone_num][:price] = 0
           end
           stats[from_phone_num][:count] += 1 unless call['ParentCallSid']
           stats[from_phone_num][:duration] += call['Duration'].to_i
+          stats[from_phone_num][:minutes_charged] += (call['Duration'].to_i / 60.0).ceil
           stats[from_phone_num][:price] += (call['Price'].to_f * 100).to_i
         end
       end
       
       total_count = 0
       total_duration = 0
+      total_minutes_charged = 0
       total_price = 0
       stats.each do |num, info|
         total_count += info[:count]
         total_duration += info[:duration]
+        total_minutes_charged += info[:minutes_charged]
         total_price += info[:price]
       end
       stats[:total_count] = total_count
       stats[:total_duration] = total_duration
+      stats[:total_minutes_charged] = total_minutes_charged
       stats[:total_price] = total_price
 
       stats
