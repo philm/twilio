@@ -28,7 +28,7 @@ describe "Available Phone Numbers" do
     end
     
     it "is searchable using multiple parameters" do      
-      response, url = stub_get(:available_phone_numbers_local_search, 'AvailablePhoneNumbers/US/Local?NearLatLong=37.806940%2C-122.270360&InRateCenter=OKLD0349T&NearNumber=15105551213&Distance=50&InRegion=CA&InLata=722&Contains=510555****')
+      response, url = stub_get(:available_phone_numbers_local_search, 'AvailablePhoneNumbers/US/Local?Contains=510555****&Distance=50&InLata=722&InRateCenter=OKLD0349T&InRegion=CA&NearLatLong=37.806940%252C-122.270360&NearNumber=15105551213')
       
       Twilio::AvailablePhoneNumbers.search_local(:in_region => 'CA', :contains => '510555****', :near_lat_long => '37.806940,-122.270360', :near_number => '15105551213', :in_lata => 722, :in_rate_center => 'OKLD0349T', :distance => 50).should == response
       WebMock.should have_requested(:get, url)
