@@ -55,7 +55,8 @@ module Twilio
   # Quick & dirty way to get proper encoding for 
   # 'StartTime>', 'StartTime<', etc. query params working
   query_string_normalizer proc { |query|
-    URI.encode(query.to_params)
+    params = HashConversions.to_params(query)
+    params.gsub('>', '%3E').gsub('<', '%3C')
   }
 
 end
