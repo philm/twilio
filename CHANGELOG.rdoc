@@ -1,5 +1,11 @@
 = Twilio Gem Changelog
 
+== 3.1.0
+
+* Better handling of Builder version for greater compat
+* Reject verb
+* Dependency on recent, improved version of HTTParty
+
 == 3.0.1
 
 * Bumped down Builder version requirement for Rails compat
