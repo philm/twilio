@@ -3,11 +3,11 @@ $:.push File.expand_path("../lib", __FILE__)
 require "twilio/version"
 
 Gem::Specification.new do |s|
-  s.name        = "twilio"
+  s.name        = "slayer-twilio"
   s.version     = Twilio::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Phil Misiowiec", "Jonathan Rudenberg", "Alex K Wolfe", "Kyle Daigle", "Jeff Wigal", "Yuri Gadow"]
-  s.email       = ["github@webficient.com"]
+  s.authors     = ["Phil Misiowiec", "Jonathan Rudenberg", "Alex K Wolfe", "Kyle Daigle", "Jeff Wigal", "Yuri Gadow", "Vlad Moskovets"]
+  s.email       = ["github@webficient.com", "github@vlad.org.ua"]
   s.homepage    = ""
   s.summary     = %q{Twilio API Client}
   s.description = %q{Twilio API wrapper}

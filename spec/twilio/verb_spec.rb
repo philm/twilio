@@ -224,6 +224,24 @@ describe "Verb" do
     end
   end
   
+  context "Reject" do
+    it "rejects" do
+      Twilio::Verb.reject.should == verb_response(:reject)
+    end
+
+    it "just rejects incoming call" do
+      verb = Twilio::Verb.new { |v|
+        v.reject
+      }.response.should match %r{<Reject/>}
+    end
+
+    it "just rejects incoming call with 'busy' status" do
+      verb = Twilio::Verb.new { |v|
+        v.reject :reason => 'busy'
+      }.response.should match %r{<Reject reason="busy"/>}
+    end
+  end
+  
   context "SMS" do
     it "sends a simple SMS message" do
       verb = Twilio::Verb.new { |v|

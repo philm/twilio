@@ -355,6 +355,21 @@ module Twilio
       output { @xml.Number(number_to_dial, options) }
     end
 
+
+    # The Reject verb refuse the call
+    # (see http://www.twilio.com/docs/api/twiml/reject)
+    # Examples:
+    #
+    #   Twilio::Verb.reject
+    #
+    #   If reject called with argument:
+    # 
+    #   Twilio::Verb.reject :reason => "busy"
+    #
+    def reject options = {}
+      output { @xml.Reject(options) }
+    end
+
     private
 
       def output
