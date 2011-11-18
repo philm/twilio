@@ -356,13 +356,13 @@ module Twilio
     end
 
 
-    # The Reject verb refuse the call
+    # The Reject verb rejects an incoming call to your Twilio number without billing you
     # (see http://www.twilio.com/docs/api/twiml/reject)
     # Examples:
     #
     #   Twilio::Verb.reject
     #
-    #   If reject called with argument:
+    #   If reject is called with an argument:
     # 
     #   Twilio::Verb.reject :reason => "busy"
     #
