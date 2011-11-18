@@ -44,6 +44,11 @@ and you can nest multiple verbs inside a block:
 
 Note: don't require 'rubygems' in any file (http://www.rubyinside.com/why-using-require-rubygems-is-wrong-1478.html)
 
+== Testing
+
+* Currently using RSpec
+* Tested with REE 1.8.7, MRI 1.9.2, and MRI 1.9.3
+
 == Copyright
 
 Copyright (c) 2009-2011 Phil Misiowiec, Webficient LLC. See LICENSE for details.
