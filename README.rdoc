@@ -58,6 +58,7 @@ Copyright (c) 2009-2011 Phil Misiowiec, Webficient LLC. See LICENSE for details.
 * Kyle Daigle
 * Yuri Gadow
 * Kyle Humberto
+* Vlad Moskovets
 * Jonathan Rudenberg
 * Mark Turner
 * Jeff Wigal

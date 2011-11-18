@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name        = "twilio"
   s.version     = Twilio::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Phil Misiowiec", "Jonathan Rudenberg", "Alex K Wolfe", "Kyle Daigle", "Jeff Wigal", "Yuri Gadow"]
+  s.authors     = ["Phil Misiowiec", "Jonathan Rudenberg", "Alex K Wolfe", "Kyle Daigle", "Jeff Wigal", "Yuri Gadow", "Vlad Moskovets"]
   s.email       = ["github@webficient.com"]
   s.homepage    = ""
   s.summary     = %q{Twilio API Client}
