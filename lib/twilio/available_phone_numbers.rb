@@ -41,6 +41,8 @@ module Twilio
     #   :in_lata
     #   :in_rate_center
     #   :distance
+    #   :page
+    #   :page_size
     def search_local(opts ={})
       opts = {:resource => 'Local'}.merge(opts)
       search(opts)
@@ -48,7 +50,10 @@ module Twilio
 
     # The search_toll_free method searches for available toll-free numbers
     # Search Options
+    #   :area_code
     #   :contains
+    #   :page
+    #   :page_size
     def search_toll_free(opts ={})
       opts = {:resource => 'TollFree'}.merge(opts)
       search(opts)
