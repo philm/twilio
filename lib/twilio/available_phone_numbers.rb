@@ -27,7 +27,7 @@ module Twilio
         :PageSize => opts[:page_size]
       }.reject {|k,v| v == nil} unless opts.empty?
       
-      Twilio.get("/AvailablePhoneNumbers/#{iso_country_code}/#{resource}", :query => params)
+      Twilio.get("/AvailablePhoneNumbers/#{iso_country_code}/#{resource}", :query => params).parsed_response["TwilioResponse"]["AvailablePhoneNumbers"]
     end
 
     # The search_local method searches for numbers in local areas (i.e. state, zip, etc..)
