@@ -22,7 +22,9 @@ module Twilio
         :NearNumber => opts[:near_number],
         :InLata => opts[:in_lata],
         :InRateCenter => opts[:in_rate_center],
-        :Distance => opts[:distance]
+        :Distance => opts[:distance],
+        :Page => opts[:page],
+        :PageSize => opts[:page_size]
       }.reject {|k,v| v == nil} unless opts.empty?
       
       Twilio.get("/AvailablePhoneNumbers/#{iso_country_code}/#{resource}", :query => params)
