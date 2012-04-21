@@ -22,7 +22,9 @@ module Twilio
         :NearNumber => opts[:near_number],
         :InLata => opts[:in_lata],
         :InRateCenter => opts[:in_rate_center],
-        :Distance => opts[:distance]
+        :Distance => opts[:distance],
+        :Page => opts[:page],
+        :PageSize => opts[:page_size]
       }.reject {|k,v| v == nil} unless opts.empty?
       
       Twilio.get("/AvailablePhoneNumbers/#{iso_country_code}/#{resource}", :query => params)
@@ -39,6 +41,8 @@ module Twilio
     #   :in_lata
     #   :in_rate_center
     #   :distance
+    #   :page
+    #   :page_size
     def search_local(opts ={})
       opts = {:resource => 'Local'}.merge(opts)
       search(opts)
@@ -46,7 +50,10 @@ module Twilio
 
     # The search_toll_free method searches for available toll-free numbers
     # Search Options
+    #   :area_code
     #   :contains
+    #   :page
+    #   :page_size
     def search_toll_free(opts ={})
       opts = {:resource => 'TollFree'}.merge(opts)
       search(opts)
