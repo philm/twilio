@@ -23,6 +23,10 @@ module Twilio
       Twilio.post("/IncomingPhoneNumbers", :body => opts)
     end
     
+    def update(incoming_sid, opts)
+      Twilio.post("/IncomingPhoneNumbers/#{incoming_sid}", :body => opts)
+    end
+    
     def delete(incoming_sid)
       Twilio.delete("/IncomingPhoneNumbers/#{incoming_sid}")
     end
