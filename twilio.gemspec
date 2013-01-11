@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency "builder", ">= 2.1.2"
-  s.add_dependency "httparty", "~> 0.8"
+  s.add_dependency "httparty", ">= 0.8"
 
   {
     'rake'    => '~> 0.8.7',
