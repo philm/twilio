@@ -1,5 +1,9 @@
 = Twilio Gem Changelog
 
+== 3.1.1
+
+* Loosens dependency on httparty gem to address a potential vulnerability
+
 == 3.1.0
 
 * Better handling of Builder version for greater compat
