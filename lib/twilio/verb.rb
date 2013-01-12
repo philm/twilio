@@ -1,3 +1,5 @@
+require 'builder'
+
 module Twilio
   # Twilio Verbs enable your application to respond to Twilio requests (to your app) with XML responses.
   # There are 5 primary verbs (say, play, gather, record, dial) and 3 secondary (hangup, pause, redirect).
@@ -363,7 +365,7 @@ module Twilio
     #   Twilio::Verb.reject
     #
     #   If reject is called with an argument:
-    # 
+    #
     #   Twilio::Verb.reject :reason => "busy"
     #
     def reject options = {}
