@@ -9,21 +9,21 @@ See http://www.twilio.com/docs/index for Twilio's API documentation.
 First set your credentials by calling the connect method:
 
   Twilio.connect('my_twilio_sid', 'my_auth_token')
-  
+
 Now call any of the Twilio classes:
-  
+
   Twilio::Call.make('1234567890', '9876543210', 'http://mysite.com/connected_call')
   Twilio::Recording.list
-  
+
 == Responding to Twilio
 
-When Twilio calls your application URL, your response must use the Twilio Markup XML (http://www.twilio.com/docs/api_reference/TwiML/). The Twilio gem makes this very easy 
-by providing a Twilio Verb class. 
+When Twilio calls your application URL, your response must use the Twilio Markup XML (http://www.twilio.com/docs/api_reference/TwiML/). The Twilio gem makes this very easy
+by providing a Twilio Verb class.
 
 For example, in a Ruby on Rails application, you could do the following inside a controller class:
 
   Twilio::Verb.dial '415-123-4567'
-  
+
 and you can nest multiple verbs inside a block:
 
   verb = Twilio::Verb.new { |v|
@@ -35,7 +35,7 @@ and you can nest multiple verbs inside a block:
 == Installation
 
   gem install twilio
-  
+
 == Contributing
 
 1. Run 'bundle' from the command line to install dependencies
@@ -51,7 +51,7 @@ Note: don't require 'rubygems' in any file (http://www.rubyinside.com/why-using-
 
 == Copyright
 
-Copyright (c) 2009-2011 Phil Misiowiec, Webficient LLC. See LICENSE for details.
+Copyright Phil Misiowiec, Webficient LLC. See LICENSE for details.
 
 == Contributors
 
