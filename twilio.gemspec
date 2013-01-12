@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
 
   {
     'rake'    => '~> 0.8.7',
-    'rspec'   => '~> 2.5.0',
+    'rspec'   => '~> 2.12',
     'webmock' => '~> 1.6.2'
   }.each { |l, v| s. add_development_dependency l, v }
 end

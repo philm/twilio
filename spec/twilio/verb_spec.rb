@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "Verb" do
-  
+
   context "Say" do
     it "says 'hi'" do
       Twilio::Verb.say('hi').should match %r{<Say( loop="1"| language="en"| voice="man"){3}>hi</Say>}
@@ -28,7 +28,7 @@ describe "Verb" do
         v.say 'hi', :loop => 1
         v.pause
         v.say 'bye'
-      }.response.should match %r{<Say( loop="1"| language="en"| voice="man"){3}>hi</Say><Pause></Pause><Say( loop="1"| language="en"| voice="man"){3}>bye</Say>}
+      }.response.should match %r{<Say( loop="1"| language="en"| voice="man"){3}>hi</Say><Pause/><Say( loop="1"| language="en"| voice="man"){3}>bye</Say>}
     end
 
     it "says 'hi' with 2 second pause and say 'bye'" do
@@ -37,9 +37,9 @@ describe "Verb" do
         v.pause :length => 2
         v.say 'bye'
       }.response.should match %r{<Say( loop="1"| language="en"| voice="man"){3}>hi</Say><Pause length="2"/><Say( loop="1"| language="en"| voice="man"){3}>bye</Say>}
-    end    
+    end
   end
-  
+
   context "Play" do
     it "plays mp3 response" do
       Twilio::Verb.play('http://foo.com/cowbell.mp3').should == verb_response(:play_mp3)
@@ -53,7 +53,7 @@ describe "Verb" do
       Twilio::Verb.play('http://foo.com/cowbell.mp3', :loop => 2, :pause => true).should == verb_response(:play_mp3_two_times_with_pause)
     end
   end
-  
+
   context "Gather" do
     it "gathers" do
       Twilio::Verb.gather.should == verb_response(:gather)
@@ -210,7 +210,7 @@ describe "Verb" do
       }.response.should == verb_response(:dial_muted_conference)
     end
   end
-  
+
   context "Hang Up" do
     it "hangs up" do
       Twilio::Verb.hangup.should == verb_response(:hangup)
@@ -223,7 +223,7 @@ describe "Verb" do
       }.response.should match %r{<Say( loop="1"| language="en"| voice="man"){3}>hi</Say><Hangup/>}
     end
   end
-  
+
   context "Reject" do
     it "rejects" do
       Twilio::Verb.reject.should == verb_response(:reject)
@@ -241,7 +241,7 @@ describe "Verb" do
       }.response.should match %r{<Reject reason="busy"/>}
     end
   end
-  
+
   context "SMS" do
     it "sends a simple SMS message" do
       verb = Twilio::Verb.new { |v|

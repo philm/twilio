@@ -1,42 +1,42 @@
 play_mp3:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Play loop="1">http://foo.com/cowbell.mp3</Play></Response>
-  
+
 play_mp3_two_times:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Play loop="2">http://foo.com/cowbell.mp3</Play></Response>
 
 play_mp3_two_times_with_pause:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Play>http://foo.com/cowbell.mp3</Play><Pause/><Play>http://foo.com/cowbell.mp3</Play></Response>
-  
+
 gather:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather/></Response>
 
 gather_with_action:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather action="http://foobar.com"/></Response>
-      
+
 gather_with_get_method:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather method="GET"/></Response>
-  
+
 gather_with_timeout:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather timeout="10"/></Response>
-  
+
 gather_with_finish_key:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather finishOnKey="*"/></Response>
-  
+
 gather_with_num_digits:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Gather numDigits="5"/></Response>
-  
+
 record:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Record></Record></Response>
-  
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Record/></Response>
+
 record_with_action:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Record action="http://foobar.com"/></Response>
-  
+
 record_with_get_method:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Record method="GET"/></Response>
-  
+
 record_with_timeout:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Record timeout="10"/></Response>
-  
+
 record_with_finish_key:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Record finishOnKey="*"/></Response>
 
@@ -45,30 +45,30 @@ record_with_max_length:
 
 dial:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial>415-123-4567</Dial></Response>
-  
+
 dial_with_action:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial action="http://foobar.com">415-123-4567</Dial></Response>
-  
+
 dial_with_get_method:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial method="GET">415-123-4567</Dial></Response>
-  
+
 dial_with_timeout:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial timeout="10">415-123-4567</Dial></Response>
-  
+
 dial_with_hangup_on_star:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial hangupOnStar="true">415-123-4567</Dial></Response>
-  
+
 dial_with_time_limit:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial timeLimit="3600">415-123-4567</Dial></Response>
-  
+
 dial_with_caller_id:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial callerId="858-987-6543">415-123-4567</Dial></Response>
-  
+
 dial_with_redirect:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial>415-123-4567</Dial><Redirect>http://www.foo.com/nextInstructions</Redirect></Response>
 
 dial_with_number_and_send_digits:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial><Number sendDigits="wwww1928">415-123-4567</Number></Dial></Response>  
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial><Number sendDigits="wwww1928">415-123-4567</Number></Dial></Response>
 
 dial_multiple_numbers:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial><Number>415-123-4567</Number><Number>415-123-4568</Number><Number>415-123-4569</Number></Dial></Response>
@@ -78,9 +78,9 @@ dial_conference:
 
 dial_muted_conference:
   response: <?xml version="1.0" encoding="UTF-8"?><Response><Dial><Conference mute="true">MyRoom</Conference></Dial></Response>
-      
+
 hangup:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Hangup/></Response>  
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Hangup/></Response>
 
 reject:
-  response: <?xml version="1.0" encoding="UTF-8"?><Response><Reject/></Response>  
+  response: <?xml version="1.0" encoding="UTF-8"?><Response><Reject/></Response>
